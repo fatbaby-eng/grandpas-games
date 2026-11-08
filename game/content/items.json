@@ -1,0 +1,68 @@
+{
+  "gear": {
+    "name": "Gear", "icon": "gear.png", "glyph": "G", "color": [200, 160, 70],
+    "description": "A small brass gear. Smells like bubbles.",
+    "pickup": "A little brass gear! Somebody's machine must be missing this."
+  },
+  "bubble_helmet": {
+    "name": "Bubble Helmet", "icon": "helmet.png", "glyph": "H", "color": [160, 220, 255],
+    "description": "A helmet made of one very large bubble. Fashionable, and very poppable."
+  },
+  "glasses": {
+    "name": "Shelly's Glasses", "icon": "glasses.png", "glyph": "oo", "color": [230, 120, 160],
+    "description": "Round pink spectacles. The lenses are thicker than a clam shell.",
+    "pickup": "Pink glasses! These must belong to somebody who can't see very well."
+  },
+  "shell_polish": {
+    "name": "Shell Polish", "icon": "polish.png", "glyph": "P", "color": [255, 230, 120],
+    "description": "Shelly's special shell polish. It makes anything shiny enough to see your fins in.",
+    "combine": {
+      "conch_shell": {
+        "consume": ["shell_polish"],
+        "actions": [{"set_flag": "shell_shiny"}, {"sound": "success"}, {"dialogue": "shell_polished"}]
+      }
+    }
+  },
+  "ship_key": {
+    "name": "Ship Key", "icon": "key.png", "glyph": "K", "color": [220, 190, 90],
+    "description": "A big iron key with a tiny anchor on it. It opens the treasure room."
+  },
+  "lantern": {
+    "name": "Lantern", "icon": "lantern.png", "glyph": "L", "color": [255, 200, 90],
+    "description": "An old ship's lantern. A friendly glow-worm lives inside and does all the work.",
+    "pickup": "A lantern! The glow-worm inside waves at me. Now I can see in dark places."
+  },
+  "crowbar": {
+    "name": "Crowbar", "icon": "crowbar.png", "glyph": "C", "color": [150, 150, 170],
+    "description": "A sturdy iron bar. Good for prying things loose, gently.",
+    "pickup": "A crowbar. Handy for anything that's stuck."
+  },
+  "pearl": {
+    "name": "Lucky Pearl", "icon": "pearl.png", "glyph": "o", "color": [240, 240, 250],
+    "description": "Captain Clam's lucky pearl. It glows a little when you tell it a story.",
+    "pickup": "A glowing pearl! Captain Clam will be so happy."
+  },
+  "recipe_page": {
+    "name": "Recipe Page", "icon": "recipe.png", "glyph": "R", "color": [250, 240, 210],
+    "description": "Grandma's kelp-cookie recipe. Step one: 'Love.' Step two: 'A little bit of seaweed.'",
+    "pickup": "A soggy piece of paper... it's Grandma's cookie recipe!"
+  },
+  "cookie": {
+    "name": "Kelp Cookie", "icon": "cookie.png", "glyph": "*", "color": [200, 150, 90],
+    "description": "A warm kelp cookie from Grandma's never-ending batch. Share them with everyone!"
+  },
+  "dance_shoes": {
+    "name": "Dance Shoes", "icon": "shoes.png", "glyph": "S", "color": [255, 110, 200],
+    "description": "Eight tiny sparkly dance shoes. Sidney says you only need two."
+  },
+  "conch_shell": {
+    "name": "Great Conch Shell", "icon": "conch.png", "glyph": "!", "color": [255, 190, 170],
+    "description": "The Great Conch Shell of Founder's Day! It hums a little when you hold it.",
+    "combine": {
+      "shell_polish": {
+        "consume": ["shell_polish"],
+        "actions": [{"set_flag": "shell_shiny"}, {"sound": "success"}, {"dialogue": "shell_polished"}]
+      }
+    }
+  }
+}

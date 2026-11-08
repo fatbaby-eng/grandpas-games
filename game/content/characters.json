@@ -1,0 +1,13 @@
+{
+  "baker":   {"name": "Baker",            "shape": "fish",     "color": [255, 170, 50],  "sprite": "baker.png",   "portrait": "baker_portrait.png"},
+  "coral":   {"name": "Coral",            "shape": "seahorse", "color": [255, 120, 160], "sprite": "coral.png",   "portrait": "coral_portrait.png"},
+  "grandma": {"name": "Grandma Grouper",  "shape": "grouper",  "color": [160, 120, 210], "sprite": "grandma.png", "portrait": "grandma_portrait.png"},
+  "puffer":  {"name": "Mr. Puffer",       "shape": "puffer",   "color": [235, 200, 80],  "sprite": "puffer.png",  "portrait": "puffer_portrait.png"},
+  "shelly":  {"name": "Shelly",           "shape": "turtle",   "color": [90, 185, 110],  "sprite": "shelly.png",  "portrait": "shelly_portrait.png"},
+  "clam":    {"name": "Captain Clam",     "shape": "clam",     "color": [235, 225, 200], "sprite": "clam.png",    "portrait": "clam_portrait.png"},
+  "bill":    {"name": "Barnacle Bill",    "shape": "whale",    "color": [120, 140, 175], "sprite": "bill.png",    "portrait": "bill_portrait.png"},
+  "dj":      {"name": "DJ Dolphin",       "shape": "dolphin",  "color": [110, 170, 235], "sprite": "dj.png",      "portrait": "dj_portrait.png"},
+  "sidney":  {"name": "Sidney the Crab",  "shape": "crab",     "color": [240, 100, 80],  "sprite": "sidney.png",  "portrait": "sidney_portrait.png"},
+  "pip":     {"name": "Pip",              "shape": "crab",     "color": [235, 150, 90],  "sprite": "pip.png",     "portrait": "pip_portrait.png"},
+  "narrator":{"name": "Narrator",         "shape": "blob",     "color": [240, 240, 255], "portrait": "narrator_portrait.png"}
+}

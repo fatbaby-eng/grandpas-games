@@ -1,0 +1,92 @@
+{
+  "start_scene": "coral_reef",
+  "tagline": "Help Baker find the Great Conch Shell before Founder's Day!",
+  "on_new_game": [],
+  "wrong_item_dialogue": "wrong_item",
+  "generic_hint": "Try talking to everyone, and click on anything that looks interesting.",
+  "ending_music": "festival",
+
+  "ui": {
+    "new_game": "New Game", "continue": "Continue", "quit": "Quit",
+    "resume": "Resume", "save": "Save Game", "hints": "Hints", "sound": "Sound",
+    "minigames": "Mini-games", "to_title": "Quit to Title", "back": "Back",
+    "on": "On", "off": "Off", "paused": "Paused",
+    "saved": "Game saved!", "no_save": "No saved game yet.",
+    "click_continue": "click to continue"
+  },
+
+  "main_conch": {
+    "name": "The Missing Conch Shell",
+    "steps": ["talk_coral", "talk_grandma", "reach_cave", "find_bill", "free_shell", "return_shell"],
+    "step_flags": {
+      "talk_coral": {"flag": "main_conch"},
+      "talk_grandma": {"flag": "clue_kelp"},
+      "reach_cave": {"any": [{"has": "bubble_helmet"}, {"has": "lantern"}]},
+      "find_bill": {"flag": "found_bill"},
+      "free_shell": {"flag": "shell_freed"},
+      "return_shell": {"flag": "shell_returned"}
+    },
+    "complete_flag": "game_won"
+  },
+
+  "side_quests": {
+    "shelly_specs":   {"name": "Shelly's Specs",       "steps": ["talk_shelly", "find_glasses", "return_glasses"], "complete_flag": "glasses_returned", "reward": "shell_polish"},
+    "bubble_trouble": {"name": "Puffer's Bubble Trouble","steps": ["talk_puffer", "find_gear", "fix_machine"],   "complete_flag": "machine_fixed",    "reward": "bubble_helmet"},
+    "captains_pearl": {"name": "The Captain's Pearl",   "steps": ["talk_clam", "open_chest", "return_pearl"],    "complete_flag": "pearl_returned",   "reward": "ship_key"},
+    "crab_dance":     {"name": "Dance Like a Crab",     "steps": ["talk_sidney", "dance"],                       "complete_flag": "crab_dance_done",  "reward": "dance_shoes"},
+    "grandmas_recipe":{"name": "Grandma's Recipe",      "steps": ["talk_grandma", "find_page", "return_page"],   "complete_flag": "recipe_returned",  "reward": "cookie"}
+  },
+
+  "minigames": {
+    "bubble_catch": {
+      "title": "Bubble Catch",
+      "instructions": "Move the net with the mouse or arrow keys. Catch 5 bubbles in a row!",
+      "shapes": ["boot", "sandwich", "Grandma", "teapot", "sock", "banana", "hat", "duck"],
+      "catch_text": "A {label} bubble!",
+      "retry_text": "Whoops, one got away! Start a new streak.",
+      "skip_text": "Skip"
+    },
+    "shell_puzzle": {
+      "title": "Shell Puzzle",
+      "instructions": "Click the big shells to change their colors until they match the pattern on the chest.",
+      "colors": [[255, 120, 120], [120, 200, 255], [255, 230, 120]],
+      "pattern_text": "Match this pattern:",
+      "check_text": "Check!",
+      "retry_text": "Not quite! Look closely at the colors.",
+      "win_text": "Click! It matches!",
+      "auto_text": "The shells wiggle... and sort themselves out!",
+      "skip_text": "Skip"
+    },
+    "crab_dance": {
+      "title": "Dance Like a Crab",
+      "instructions": "Watch Sidney's four dance moves, then repeat them.",
+      "watch_text": "Watch Sidney...",
+      "your_turn_text": "Your turn!",
+      "repeat_text": "Repeat the moves",
+      "keys_text": "Use the arrow keys, or click the arrows",
+      "retry_text": "Oops! Watch one more time.",
+      "win_text": "Perfect moves!",
+      "skip_text": "Skip"
+    },
+    "dj_beat": {
+      "title": "DJ Dolphin's Beat",
+      "instructions": "Click the glowing note to keep the beat going. Eight notes to go!",
+      "progress_text": "Notes",
+      "win_text": "What a beat!",
+      "skip_text": "Skip"
+    }
+  },
+
+  "ending": [
+    {"speaker": "dj", "text": "FISHES AND GENTLE-FINS! The Great Conch Shell is HOME! Founder's Day is ON!"},
+    {"if": {"flag": "shell_shiny"}, "speaker": "dj", "text": "And would you LOOK at that shine! You can see the whole reef in it. Even my good side!"},
+    {"speaker": "bill", "text": "Barnacle Bill squeezes into the back of the crowd, very carefully, and bumps into only two balloons."},
+    {"if": {"flag": "recipe_returned"}, "speaker": "grandma", "text": "Grandma Grouper hands out kelp cookies to everyone. Even the balloons get one."},
+    {"if": {"flag": "crab_dance_done"}, "speaker": "sidney", "text": "Sidney the crab takes the dance floor at last. He dances sideways. He knocks over the cake. Everyone cheers anyway."},
+    {"if": {"flag": "glasses_returned"}, "speaker": "shelly", "text": "Shelly watches the whole festival with her glasses on. 'Oh! So THAT'S what everyone looks like!'"},
+    {"if": {"flag": "pearl_returned"}, "speaker": "clam", "text": "Captain Clam tells the story of the Great Shell Rescue. By the third telling, Baker has wrestled a kraken."},
+    {"speaker": "coral", "text": "Coral finally stops worrying. For about four seconds. Then she wonders if the balloons are tied tight enough."},
+    {"speaker": "baker", "text": "Baker the Fish, Hero of Founder's Day, takes a bow... and then goes to find a snack."},
+    {"speaker": "narrator", "text": "THE END. Thank you for playing! You can keep exploring the reef, or replay the mini-games from the Menu."}
+  ]
+}

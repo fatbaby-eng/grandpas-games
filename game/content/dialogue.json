@@ -1,0 +1,402 @@
+{
+  "intro": {
+    "lines": [
+      {"speaker": "baker", "text": "What a beautiful morning in the Coral Reef! Founder's Day is TODAY."},
+      {"speaker": "coral", "text": "Baker! Over here! Something terrible has happened!"}
+    ]
+  },
+  "wrong_item": {
+    "lines": [{"speaker": "baker", "text": "Hmm. That doesn't go there. Let me try something else."}]
+  },
+  "festival_locked": {
+    "lines": [
+      {"speaker": "coral", "text": "The Festival Gate stays shut until the Great Conch Shell comes home. That's the rule!"},
+      {"speaker": "baker", "text": "Then I'd better find it. No shell, no festival!"}
+    ]
+  },
+
+  "coral_intro": {
+    "lines": [
+      {"speaker": "coral", "text": "Baker, the Great Conch Shell is GONE! The festival can't start without it!"},
+      {"speaker": "baker", "text": "Gone? Don't worry, Coral. We'll find it. I'm sure it hasn't gone fin-ishingly far."},
+      {"speaker": "coral", "text": "Oh, I hope so. Grandma Grouper was out early this morning. Maybe she saw something!"}
+    ],
+    "end": [{"set_flag": "main_conch"}]
+  },
+  "coral_go_grandma": {
+    "lines": [{"speaker": "coral", "text": "Grandma Grouper is on her rock, over to the left. She sees EVERYTHING. Well, most things."}]
+  },
+  "coral_hint": {
+    "lines": [
+      {"speaker": "coral", "text": "Any luck? I've been worrying so hard my tail curled up twice."},
+      {"speaker": "coral", "text": "Grandma said the shadow went toward the Kelp Forest. The arrow on the right takes you there."}
+    ]
+  },
+  "coral_bill": {
+    "lines": [
+      {"speaker": "coral", "text": "A WHALE has the shell? On his TAIL? Oh my. Oh my, oh my."},
+      {"speaker": "coral", "text": "Is there anything that could pop it loose? Or pry it? Think, Baker, think!"}
+    ]
+  },
+  "coral_has_shell": {
+    "lines": [
+      {"speaker": "coral", "text": "You FOUND it! Baker, you're o-fish-ally my hero!"},
+      {"speaker": "coral", "text": "Quick, take it through the Festival Gate! DJ Dolphin is waiting on the stage."}
+    ]
+  },
+  "coral_won": {
+    "lines": [{"speaker": "coral", "text": "Best. Founder's Day. EVER. Do you think the balloons are tied tight enough, though?"}]
+  },
+  "coral_cookie": {
+    "lines": [{"speaker": "coral", "text": "A kelp cookie! Oh, thank you. I'll eat it slowly so I don't get nervous crumbs."}]
+  },
+
+  "grandma_before": {
+    "lines": [{"speaker": "grandma", "text": "Good morning, dear! Happy Founder's Day. Coral looks like she wants to tell you something."}]
+  },
+  "grandma_intro": {
+    "lines": [
+      {"speaker": "grandma", "text": "The Conch Shell is missing? Oh dear. Oh deary dear. Let me think..."},
+      {"speaker": "grandma", "text": "This morning I saw a big gray shadow swoosh past, heading for the Kelp Forest. It was chasing krill, I think."},
+      {"speaker": "baker", "text": "A big gray shadow! That's a clue. Thanks, Grandma!"},
+      {"speaker": "grandma", "text": "Oh, and dear, if you spot my kelp-cookie recipe page out there, bring it back. The current took it right out of my fins."}
+    ],
+    "end": [{"set_flag": "clue_kelp"}, {"set_flag": "recipe_quest"}]
+  },
+  "grandma_hint_kelp": {
+    "lines": [
+      {"speaker": "grandma", "text": "The gray shadow went toward the Kelp Forest, dear. Mr. Puffer lives out that way."},
+      {"speaker": "grandma", "text": "He makes those lovely bubbles. Very useful, bubbles. You can breathe in a big one, you know!"}
+    ]
+  },
+  "grandma_hint_kelp_obvious": {
+    "lines": [
+      {"speaker": "grandma", "text": "Dear, I'll say it plain: go RIGHT, to the Kelp Forest. Find the gear in the kelp and give it to Mr. Puffer's machine."},
+      {"speaker": "grandma", "text": "Then he'll give you a Bubble Helmet, and you can go into the Dark Cave. That's where shadows go!"}
+    ]
+  },
+  "grandma_hint_cave": {
+    "lines": [
+      {"speaker": "grandma", "text": "You can breathe and see in the dark now! The Dark Cave is past the Kelp Forest."},
+      {"speaker": "grandma", "text": "Big gray shadows love dark caves. Don't be shy, dear. Shy never found a shell."}
+    ]
+  },
+  "grandma_hint_cave_obvious": {
+    "lines": [{"speaker": "grandma", "text": "Kelp Forest, then the arrow on the right into the Dark Cave. Then click the big gray thing. Go on, dear!"}]
+  },
+  "grandma_hint_free": {
+    "lines": [
+      {"speaker": "grandma", "text": "Stuck on a whale's tail! Well, I never. A big bubble could pop it right off."},
+      {"speaker": "grandma", "text": "Or Captain Clam's ship is full of old tools. A crowbar would do it, gently."}
+    ]
+  },
+  "grandma_hint_festival": {
+    "lines": [{"speaker": "grandma", "text": "You've got it! Up through the Festival Gate, dear. Tell DJ Dolphin I said turn it down a smidge."}]
+  },
+  "grandma_sees_page": {
+    "lines": [{"speaker": "grandma", "text": "Is that my recipe page in your fin? Click it in your inventory, then click me, dear. My fins are full of knitting."}]
+  },
+  "grandma_sees_shell": {
+    "lines": [{"speaker": "grandma", "text": "The Great Conch Shell! It's even bigger than I remember. Off to the festival with you!"}]
+  },
+  "grandma_recipe_return": {
+    "lines": [
+      {"speaker": "grandma", "text": "My recipe! Oh, you wonderful fish. Now, the secret ingredient is love, and a little bit of seaweed."},
+      {"speaker": "grandma", "text": "Here, take a kelp cookie. Take a WHOLE batch. They never run out; that's the love part."}
+    ],
+    "end": [{"give_item": "cookie"}]
+  },
+  "grandma_cookie": {
+    "lines": [{"speaker": "grandma", "text": "Offering me my own cookie? You're a sweet one. No thank you, dear, I've had eleven."}]
+  },
+  "grandma_won": {
+    "lines": [{"speaker": "grandma", "text": "What a day! I'm so proud I could burst. Don't tell Mr. Puffer I said 'burst'."}]
+  },
+
+  "sidney_intro": {
+    "lines": [
+      {"speaker": "sidney", "text": "Psst, Baker, can I tell you a secret? I want to dance at the festival, but I'm too shy."},
+      {"speaker": "baker", "text": "Sidney, you'd be great! Crabs are natural dancers. You've got eight left feet!"},
+      {"speaker": "sidney", "text": "...Was that a compliment? Okay. Will you practice with me? Watch my moves, then copy them!"}
+    ],
+    "end": [{"set_flag": "met_sidney"}, {"minigame": "crab_dance", "on_complete": [{"set_flag": "crab_dance_done"}, {"dialogue": "sidney_reward"}]}]
+  },
+  "sidney_again": {
+    "lines": [
+      {"speaker": "sidney", "text": "Ready to practice my dance again? I promise not to knock over the sandcastle this time.",
+       "choices": [
+         {"text": "Let's dance!", "actions": [{"minigame": "crab_dance", "on_complete": [{"set_flag": "crab_dance_done"}, {"dialogue": "sidney_reward"}]}]},
+         {"text": "Maybe later, Sidney."}
+       ]}
+    ]
+  },
+  "sidney_reward": {
+    "lines": [
+      {"speaker": "sidney", "text": "We did it! I feel so brave I could dance sideways across the whole reef!"},
+      {"speaker": "sidney", "text": "Here, take my spare dance shoes. I only need eight. Wear them at the festival!"}
+    ],
+    "end": [{"give_item": "dance_shoes"}]
+  },
+  "sidney_after": {
+    "lines": [{"speaker": "sidney", "text": "Sideways, sideways, spin! I've been practicing. I only knocked over the sandcastle twice."}]
+  },
+  "sidney_cookie": {
+    "lines": [{"speaker": "sidney", "text": "A cookie! I'll hold it with my left claw. No, my other left claw. No, my OTHER other left claw."}]
+  },
+  "sidney_shoes": {
+    "lines": [{"speaker": "sidney", "text": "Those are for YOU, Baker. Try them on the dance floor at the festival!"}]
+  },
+
+  "puffer_intro": {
+    "lines": [
+      {"speaker": "puffer", "text": "Hmph. Don't mind me. Just a puffer fish with a busted bubble machine on the biggest day of the year."},
+      {"speaker": "baker", "text": "What's wrong with it, Mr. Puffer?"},
+      {"speaker": "puffer", "text": "Lost a gear. And I'm too puffed up to squeeze into the kelp to look for it. It's a sore subject, so don't needle me."}
+    ],
+    "end": [{"set_flag": "met_puffer"}]
+  },
+  "puffer_again": {
+    "lines": [{"speaker": "puffer", "text": "Still no gear. It's small and brass and it's somewhere down in that kelp. I'm not pointing; I'm sulking."}]
+  },
+  "puffer_has_gear": {
+    "lines": [{"speaker": "puffer", "text": "You FOUND it! Well don't give it to me, I've got no thumbs. Pop it in the machine over there."}]
+  },
+  "puffer_gear_on_me": {
+    "lines": [{"speaker": "puffer", "text": "Not on ME, kid, on the MACHINE! The big clanky thing right next to me."}]
+  },
+  "machine_broken_look": {
+    "lines": [{"speaker": "baker", "text": "A bubble machine! There's an empty slot where a gear should go. It's making a sad 'pfft' noise."}]
+  },
+  "machine_gear_in": {
+    "lines": [
+      {"speaker": "baker", "text": "Click! The gear fits perfectly. The machine is starting to rumble..."},
+      {"speaker": "puffer", "text": "It's working! Quick, the bubbles come out a bit wild at first. Catch a few so they don't float off!"}
+    ],
+    "end": [{"minigame": "bubble_catch", "on_complete": [{"set_flag": "machine_fixed"}, {"dialogue": "puffer_reward"}]}]
+  },
+  "puffer_reward": {
+    "lines": [
+      {"speaker": "puffer", "text": "Ha! Look at that. Bubbles shaped like boots, sandwiches, Grandma's face... I'll fix THAT setting later."},
+      {"speaker": "puffer", "text": "Here. One extra-large bubble helmet. You can breathe in it anywhere, even the Dark Cave. Don't pop it on a rock."}
+    ],
+    "end": [{"give_item": "bubble_helmet"}]
+  },
+  "machine_fixed_look": {
+    "lines": [{"speaker": "baker", "text": "The machine is humming happily. A bubble shaped like a teapot floats by."}]
+  },
+  "puffer_after": {
+    "lines": [{"speaker": "puffer", "text": "Machine's purring. I'm almost not grumpy. Almost. Go find that shell, kid."}]
+  },
+  "puffer_cookie": {
+    "lines": [{"speaker": "puffer", "text": "A cookie? For me? ...Hmph. Thanks. If I eat it I'll puff up even more, but it's worth it."}]
+  },
+
+  "shelly_intro": {
+    "lines": [
+      {"speaker": "shelly", "text": "Oh! Hello, sandwich. Have you seen my glasses? I can't find anything without them."},
+      {"speaker": "baker", "text": "I'm Baker, Shelly. A fish, not a sandwich. What do your glasses look like?"},
+      {"speaker": "shelly", "text": "Pink and round. I lost them near the old ship. I think. Something shiny went tumbling that way too, a big something."}
+    ],
+    "end": [{"set_flag": "met_shelly"}, {"set_flag": "clue_ship"}]
+  },
+  "shelly_again": {
+    "lines": [{"speaker": "shelly", "text": "Hello again, sandwich. I mean Baker. If you're near the Sunken Ship, keep an eye out for my glasses."}]
+  },
+  "shelly_you_have_glasses": {
+    "lines": [{"speaker": "shelly", "text": "Is that... a pink blur in your fin? Click it in your inventory and then click me, please!"}]
+  },
+  "shelly_glasses_return": {
+    "lines": [
+      {"speaker": "shelly", "text": "My glasses! Oh... you're a FISH, and a very nice-looking one. I'm so embarrassed!"},
+      {"speaker": "shelly", "text": "Now I remember properly: the shiny thing was a huge shell, stuck on a whale's tail. He headed into the Dark Cave past here."},
+      {"speaker": "shelly", "text": "Take my shell polish as a thank you. Whatever you find, it'll be shell-shockingly shiny."}
+    ],
+    "end": [{"give_item": "shell_polish"}]
+  },
+  "shelly_after": {
+    "lines": [{"speaker": "shelly", "text": "I can see everything now! That rock is a snail. That snail is a rock. Life is full of surprises."}]
+  },
+  "shelly_cookie": {
+    "lines": [{"speaker": "shelly", "text": "A cookie! Finally, something I was RIGHT about being food. Thank you, Baker."}]
+  },
+  "cave_too_dark": {
+    "lines": [
+      {"speaker": "baker", "text": "Whoa, it's pitch dark in there, and the water smells funny. I can't go in like this."},
+      {"speaker": "baker", "text": "I'd need a light, or a big bubble of fresh air to breathe. Mr. Puffer makes bubbles..."}
+    ]
+  },
+
+  "clam_intro": {
+    "lines": [
+      {"speaker": "clam", "text": "AHOY! Captain Clam, retired, at your service. Did I ever tell you about the time I wrestled a kraken?"},
+      {"speaker": "baker", "text": "Hi Captain! I'm looking for the Great Conch Shell. Have you seen anything shiny fall this way?"},
+      {"speaker": "clam", "text": "Shiny? My lucky pearl rolled into that chest and the lid snapped shut! A tragedy of the seven seas!"},
+      {"speaker": "clam", "text": "Get it back and I'll give you the key to my treasure room. OR make me laugh, and I'll give you the key anyway. I'm easy."}
+    ],
+    "end": [{"set_flag": "met_clam"}]
+  },
+  "clam_offer": {
+    "lines": [
+      {"speaker": "clam", "text": "Back again, young fish! What'll it be?",
+       "choices": [
+         {"text": "Tell the Captain a joke", "next": "clam_joke_contest"},
+         {"text": "Ask about the pearl", "next": "clam_pearl_hint"},
+         {"text": "Hear a tall tale", "next": "clam_tale"}
+       ]}
+    ]
+  },
+  "clam_joke_contest": {
+    "lines": [
+      {"speaker": "clam", "text": "A joke contest! Let's hear your best one. I warn you, I haven't laughed since 1998."},
+      {"speaker": "baker", "text": "Okay, Captain...",
+       "choices": [
+         {"text": "Why don't fish do well in school? They're always below sea level!", "next": "clam_laughs_1"},
+         {"text": "What do you call a clam that won't share? Shellfish!", "next": "clam_laughs_2"},
+         {"text": "How does a dolphin make a decision? He flipper coin!", "next": "clam_laughs_3"}
+       ]}
+    ]
+  },
+  "clam_laughs_1": {
+    "lines": [
+      {"speaker": "clam", "text": "HAR HAR HAR! Below sea level! Oh, my hinges! That's the finest joke on the seven seas!"},
+      {"speaker": "clam", "text": "A deal's a deal. Here's the key to the treasure room. Mind the spoons."}
+    ],
+    "end": [{"set_flag": "clam_joke_done"}, {"if": {"all": [{"not_has": "ship_key"}, {"not_flag": "treasure_room_open"}]}, "then": [{"give_item": "ship_key"}]}]
+  },
+  "clam_laughs_2": {
+    "lines": [
+      {"speaker": "clam", "text": "SHELLFISH! HAR HAR! You dare joke about clams to a clam? I LOVE it!"},
+      {"speaker": "clam", "text": "A deal's a deal. Here's the key to the treasure room. Mind the spoons."}
+    ],
+    "end": [{"set_flag": "clam_joke_done"}, {"if": {"all": [{"not_has": "ship_key"}, {"not_flag": "treasure_room_open"}]}, "then": [{"give_item": "ship_key"}]}]
+  },
+  "clam_laughs_3": {
+    "lines": [
+      {"speaker": "clam", "text": "FLIPPER COIN! Oh ho ho, I'm going to tell DJ Dolphin that one myself!"},
+      {"speaker": "clam", "text": "A deal's a deal. Here's the key to the treasure room. Mind the spoons."}
+    ],
+    "end": [{"set_flag": "clam_joke_done"}, {"if": {"all": [{"not_has": "ship_key"}, {"not_flag": "treasure_room_open"}]}, "then": [{"give_item": "ship_key"}]}]
+  },
+  "clam_pearl_hint": {
+    "lines": [
+      {"speaker": "clam", "text": "The chest has three shells on the lid. Match them to the pattern and it pops open like a surprised oyster."},
+      {"speaker": "clam", "text": "Click the chest to have a go. If you get stuck, the shells sort of... help. Old chest, kind heart."}
+    ]
+  },
+  "clam_tale": {
+    "lines": [
+      {"speaker": "clam", "text": "Picture it: the storm of '82. Waves as tall as whales. And ME, alone, wrestling a kraken with one hinge tied behind my back!"},
+      {"speaker": "pip", "text": "(Pip shakes his head slowly.)"},
+      {"speaker": "clam", "text": "Don't listen to Pip, he wasn't there, mostly. Anyway, where was I? Right, the kraken!"}
+    ]
+  },
+  "clam_you_have_pearl": {
+    "lines": [{"speaker": "clam", "text": "Is that my PEARL? Click it in your inventory, then click me! My hinges are trembling!"}]
+  },
+  "clam_pearl_return": {
+    "lines": [
+      {"speaker": "clam", "text": "MY PEARL! Oh, you brave, clever fish. This is better than the time I wrestled TWO krakens!"},
+      {"speaker": "pip", "text": "(Pip shakes his head.)"},
+      {"speaker": "clam", "text": "The treasure room is yours to explore. If I haven't given you the key already, take it now!"}
+    ],
+    "end": [{"if": {"all": [{"not_has": "ship_key"}, {"not_flag": "treasure_room_open"}]}, "then": [{"give_item": "ship_key"}]}]
+  },
+  "clam_has_key": {
+    "lines": [{"speaker": "clam", "text": "The treasure room is at the back, young fish. Lanterns, crowbars, spoons. SO many spoons."}]
+  },
+  "clam_story": {
+    "lines": [
+      {"speaker": "clam", "text": "Did I tell you about the time a brave fish rescued my pearl? Fought off a sea monster to do it!"},
+      {"speaker": "baker", "text": "Captain, that was me. It was a puzzle box."},
+      {"speaker": "clam", "text": "A puzzle box MONSTER. Pip, write that down."}
+    ]
+  },
+  "clam_cookie": {
+    "lines": [{"speaker": "clam", "text": "A kelp cookie! Reminds me of the time I wrestled a kraken over the last biscuit. Pip, stop shaking your head."}]
+  },
+  "door_locked": {
+    "lines": [{"speaker": "baker", "text": "A heavy wooden door with a big iron lock. Captain Clam has the key."}]
+  },
+  "door_opens": {
+    "lines": [{"speaker": "baker", "text": "Creeeak! The door swings open. There's a lantern, a crowbar, a LOT of spoons... and something pink and round."}]
+  },
+
+  "cave_enter": {
+    "lines": [{"speaker": "baker", "text": "It's so dark. But I can see glowing spots... and something very, very big breathing."}]
+  },
+  "bill_intro": {
+    "lines": [
+      {"speaker": "bill", "text": "Oh no, hello, little fish, please don't be scared! I'm Bill, Barnacle Bill, and I'm sorry about... everything."},
+      {"speaker": "baker", "text": "I'm Baker! Bill, that's the Great Conch Shell on your tail!"},
+      {"speaker": "bill", "text": "I KNOW. I was chasing krill, I did a big turn, and SCHLOOP. It's wedged tight. I've been hiding in here, so embarrassed."},
+      {"speaker": "baker", "text": "Nobody's mad, Bill. Let's get it off and bring it to the festival together!"}
+    ],
+    "end": [{"set_flag": "found_bill"}]
+  },
+  "bill_again": {
+    "lines": [{"speaker": "bill", "text": "It's really stuck. Maybe a big bubble could pop it loose, or something strong to pry with? I'd do it, but... no fingers."}]
+  },
+  "bill_again_ready": {
+    "lines": [{"speaker": "bill", "text": "You've got something that might work! Click it in your inventory, then click the shell on my tail. I'll hold very, very still."}]
+  },
+  "bill_wrong_spot": {
+    "lines": [{"speaker": "bill", "text": "Ha, that tickles! But the shell's on my TAIL, friend. Down at the other end. I'm a lot of whale."}]
+  },
+  "shell_before_bill": {
+    "lines": [{"speaker": "baker", "text": "That's the Conch Shell! But it's attached to something enormous. I should say hello first."}]
+  },
+  "shell_stuck": {
+    "lines": [{"speaker": "baker", "text": "It's wedged on tight. I need something to pop it loose, or pry it off gently."}]
+  },
+  "shell_freed_bubble": {
+    "lines": [
+      {"speaker": "baker", "text": "I'll slide the Bubble Helmet under the edge and... POP!"},
+      {"speaker": "bill", "text": "WHOA! It's off! Oh, that feels SO much better. You're a wonder, Baker!"}
+    ],
+    "end": [{"give_item": "conch_shell"}]
+  },
+  "shell_freed_crowbar": {
+    "lines": [
+      {"speaker": "baker", "text": "Easy does it... a little wiggle with the crowbar and... CLUNK!"},
+      {"speaker": "bill", "text": "It's off! Oh, that feels SO much better. You're a wonder, Baker!"}
+    ],
+    "end": [{"give_item": "conch_shell"}]
+  },
+  "bill_freed": {
+    "lines": [{"speaker": "bill", "text": "Take the shell to the festival, Baker. I'll follow... slowly. I'm trying not to bump anything."}]
+  },
+  "bill_after": {
+    "lines": [{"speaker": "bill", "text": "I made it to the festival and only knocked over two balloons! Thank you for being my friend, Baker."}]
+  },
+  "bill_cookie": {
+    "lines": [{"speaker": "bill", "text": "A cookie for me? It's so tiny and so kind. I'll save it for a whale of a special occasion."}]
+  },
+
+  "dj_intro": {
+    "lines": [{"speaker": "dj", "text": "DJ Dolphin here, live from the main stage! We are ON HOLD until the Great Conch Shell arrives, fishes!"}]
+  },
+  "dj_return": {
+    "lines": [
+      {"speaker": "dj", "text": "Is that... IS THAT THE GREAT CONCH SHELL? Baker, you absolute LEGEND of the lagoon!"},
+      {"speaker": "baker", "text": "Barnacle Bill had it stuck on his tail. It was an accident. He's really sorry."},
+      {"speaker": "dj", "text": "Accidents happen, we forgive and we GROOVE. Help me kick off the festival. Click the glowing notes with me!"}
+    ],
+    "end": [{"remove_item": "conch_shell"}, {"set_flag": "shell_returned"}, {"music": "festival"},
+            {"minigame": "dj_beat", "on_complete": [{"set_flag": "game_won"}, {"ending": true}]}]
+  },
+  "dj_after": {
+    "lines": [{"speaker": "dj", "text": "The shell is home, the beat is bumpin', and you, Baker, are the star of the sea! Keep dancing, everybody!"}]
+  },
+  "dj_cookie": {
+    "lines": [{"speaker": "dj", "text": "A kelp cookie for the DJ? Now THAT'S what I call a request! Crunch-tastic!"}]
+  },
+  "dj_shoes": {
+    "lines": [{"speaker": "dj", "text": "Sparkly dance shoes! Hit the dance floor to the right and show us the Sidney Shuffle!"}]
+  },
+  "shell_polished": {
+    "lines": [
+      {"speaker": "baker", "text": "A little polish, a little rub... WOW. I can see my whole face in it."},
+      {"speaker": "baker", "text": "Uh oh. I can see a LOT of my face in it. Is my fin always that goofy?"}
+    ]
+  }
+}

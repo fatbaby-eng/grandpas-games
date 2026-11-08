@@ -1,0 +1,327 @@
+{
+  "coral_reef": {
+    "name": "Coral Reef",
+    "background": "coral_reef.png",
+    "palette": {"top": [40, 150, 210], "bottom": [10, 70, 130], "floor": [230, 200, 150], "accent": [255, 120, 160]},
+    "style": "reef", "floor_y": 400, "music": "underwater",
+    "walkable": [[40, 400], [1240, 400], [1240, 630], [40, 630]],
+    "spawn": [640, 540],
+    "on_enter_once": [{"flag": "intro_seen", "actions": [{"dialogue": "intro"}]}],
+    "hotspots": [
+      {"id": "grandma", "type": "npc", "character": "grandma", "rect": [230, 280, 170, 170], "walk_to": [420, 540],
+       "counter": "grandma_talks",
+       "dialogue": [
+         {"if": {"flag": "game_won"}, "id": "grandma_won"},
+         {"if": {"not_flag": "main_conch"}, "id": "grandma_before"},
+         {"if": {"not_flag": "clue_kelp"}, "id": "grandma_intro"},
+         {"if": {"has": "recipe_page"}, "id": "grandma_sees_page"},
+         {"if": {"has": "conch_shell"}, "id": "grandma_hint_festival"},
+         {"if": {"all": [{"flag": "found_bill"}, {"not_flag": "shell_freed"}]}, "id": "grandma_hint_free"},
+         {"if": {"all": [{"any": [{"has": "bubble_helmet"}, {"has": "lantern"}]}, {"counter_gte": ["grandma_talks", 4]}]}, "id": "grandma_hint_cave_obvious"},
+         {"if": {"any": [{"has": "bubble_helmet"}, {"has": "lantern"}]}, "id": "grandma_hint_cave"},
+         {"if": {"counter_gte": ["grandma_talks", 4]}, "id": "grandma_hint_kelp_obvious"},
+         {"id": "grandma_hint_kelp"}
+       ],
+       "use": {
+         "recipe_page": {"consume": true, "actions": [{"set_flag": "recipe_returned"}, {"dialogue": "grandma_recipe_return"}]},
+         "cookie": {"actions": [{"dialogue": "grandma_cookie"}]},
+         "conch_shell": {"actions": [{"dialogue": "grandma_sees_shell"}]}
+       }},
+      {"id": "coral", "type": "npc", "character": "coral", "rect": [680, 320, 90, 140], "walk_to": [610, 540],
+       "counter": "coral_talks",
+       "dialogue": [
+         {"if": {"flag": "game_won"}, "id": "coral_won"},
+         {"if": {"not_flag": "main_conch"}, "id": "coral_intro"},
+         {"if": {"has": "conch_shell"}, "id": "coral_has_shell"},
+         {"if": {"not_flag": "clue_kelp"}, "id": "coral_go_grandma"},
+         {"if": {"flag": "found_bill"}, "id": "coral_bill"},
+         {"id": "coral_hint"}
+       ],
+       "use": {"cookie": {"actions": [{"dialogue": "coral_cookie"}]}, "conch_shell": {"actions": [{"dialogue": "coral_has_shell"}]}}},
+      {"id": "sidney", "type": "npc", "character": "sidney", "rect": [950, 470, 100, 70], "walk_to": [880, 570],
+       "dialogue": [
+         {"if": {"flag": "crab_dance_done"}, "id": "sidney_after"},
+         {"if": {"flag": "met_sidney"}, "id": "sidney_again"},
+         {"id": "sidney_intro"}
+       ],
+       "use": {"cookie": {"actions": [{"dialogue": "sidney_cookie"}]}, "dance_shoes": {"actions": [{"dialogue": "sidney_shoes"}]}}},
+
+      {"id": "to_kelp", "type": "exit", "rect": [1170, 380, 110, 260], "prop": "arrow", "label": "Kelp Forest", "color": [120, 255, 160],
+       "to": "kelp_forest", "spawn": [140, 540]},
+      {"id": "to_ship", "type": "exit", "rect": [0, 380, 110, 260], "prop": "rect", "label": "Sunken Ship", "color": [120, 200, 255],
+       "to": "sunken_ship", "spawn": [1120, 540]},
+      {"id": "to_festival", "type": "exit", "rect": [500, 140, 260, 130], "prop": "rect", "label": "Festival Gate", "color": [255, 200, 80],
+       "to": "festival_grounds", "spawn": [640, 560],
+       "requires": {"any": [{"has": "conch_shell"}, {"flag": "shell_returned"}]},
+       "blocked": [{"dialogue": "festival_locked"}]},
+
+      {"id": "sandcastle", "type": "humor", "rect": [820, 560, 110, 60], "label": "sandcastle", "color": [235, 215, 160],
+       "text": ["A sandcastle. The tide is not kind to architects.", "Somebody built a tiny sand garage for a tiny sand car.", "A sand crab pokes its head out of the sand tower. 'Rent's due!'"]},
+      {"id": "anemone", "type": "humor", "rect": [120, 540, 90, 80], "label": "anemone", "color": [255, 140, 180],
+       "text": ["Wiggly! The anemone tickles my fin.", "The anemone sneezes. Anemones can't sneeze. ...Can they?", "It waves back. I think we're friends now."]},
+      {"id": "starfish", "type": "humor", "rect": [470, 470, 60, 60], "label": "starfish", "color": [255, 170, 90],
+       "text": ["A starfish. It's practicing its autograph.", "'I'm not a fish,' says the starfish. 'I'm a STAR.'", "It does a slow, slow cartwheel. Very slow. Still going."]},
+      {"id": "chatty_clam", "type": "humor", "rect": [600, 590, 70, 40], "label": "clam", "color": [220, 210, 190],
+       "text": ["The little clam opens up... and burps a bubble.", "'Shh,' says the clam. 'I'm being a rock today.'"]}
+    ],
+    "hints": [
+      {"if": {"not_flag": "main_conch"}, "text": "Coral looks worried. Click on her to find out why."},
+      {"if": {"not_flag": "clue_kelp"}, "text": "Grandma Grouper on her rock may have seen something. Go talk to her."},
+      {"if": {"has": "conch_shell"}, "text": "You've got the shell! Take it through the Festival Gate at the top to DJ Dolphin."},
+      {"if": {"flag": "found_bill"}, "text": "The shell is stuck on Bill's tail. Pop it with the Bubble Helmet or pry it with the Crowbar from the ship."},
+      {"if": {"any": [{"has": "bubble_helmet"}, {"has": "lantern"}]}, "text": "You can go into the Dark Cave now. It's past the Kelp Forest, to the right."},
+      {"text": "Grandma saw a big gray shadow near the Kelp Forest. Try the arrow on the right."}
+    ]
+  },
+
+  "kelp_forest": {
+    "name": "Kelp Forest",
+    "background": "kelp_forest.png",
+    "palette": {"top": [20, 125, 110], "bottom": [5, 60, 60], "floor": [120, 150, 90], "accent": [180, 255, 120]},
+    "style": "kelp", "floor_y": 420, "music": "underwater",
+    "walkable": [[40, 420], [1240, 420], [1240, 630], [40, 630]],
+    "spawn": [140, 540],
+    "hotspots": [
+      {"id": "puffer", "type": "npc", "character": "puffer", "rect": [860, 320, 120, 120], "walk_to": [790, 550],
+       "counter": "puffer_talks",
+       "dialogue": [
+         {"if": {"flag": "machine_fixed"}, "id": "puffer_after"},
+         {"if": {"has": "gear"}, "id": "puffer_has_gear"},
+         {"if": {"flag": "met_puffer"}, "id": "puffer_again"},
+         {"id": "puffer_intro"}
+       ],
+       "use": {"gear": {"actions": [{"dialogue": "puffer_gear_on_me"}]}, "cookie": {"actions": [{"dialogue": "puffer_cookie"}]}}},
+      {"id": "bubble_machine", "type": "object", "rect": [1000, 330, 140, 230], "walk_to": [930, 560],
+       "prop": "rect", "label": "bubble machine", "color": [150, 150, 175],
+       "dialogue": [
+         {"if": {"flag": "machine_fixed"}, "id": "machine_fixed_look"},
+         {"id": "machine_broken_look"}
+       ],
+       "use": {
+         "gear": {"consume": true, "actions": [{"set_flag": "gear_installed"}, {"sound": "success"}, {"dialogue": "machine_gear_in"}]},
+         "bubble_helmet": {"actions": [{"say": "The machine already made this one. It doesn't want it back."}]}
+       }},
+      {"id": "gear", "type": "item", "item": "gear", "rect": [430, 585, 44, 44], "walk_to": [480, 570]},
+      {"id": "shelly", "type": "npc", "character": "shelly", "rect": [150, 430, 160, 100], "walk_to": [340, 570], "facing": "right",
+       "counter": "shelly_talks",
+       "dialogue": [
+         {"if": {"flag": "glasses_returned"}, "id": "shelly_after"},
+         {"if": {"not_flag": "met_shelly"}, "id": "shelly_intro"},
+         {"if": {"has": "glasses"}, "id": "shelly_you_have_glasses"},
+         {"id": "shelly_again"}
+       ],
+       "use": {
+         "glasses": {"consume": true, "actions": [{"set_flag": "glasses_returned"}, {"set_flag": "clue_ship"}, {"dialogue": "shelly_glasses_return"}]},
+         "cookie": {"actions": [{"dialogue": "shelly_cookie"}]}
+       }},
+      {"id": "recipe_page", "type": "item", "item": "recipe_page", "rect": [650, 290, 36, 44], "walk_to": [660, 560],
+       "visible_if": {"flag": "recipe_quest"}},
+
+      {"id": "to_reef", "type": "exit", "rect": [0, 400, 100, 240], "prop": "arrow", "label": "Coral Reef", "color": [255, 160, 190],
+       "to": "coral_reef", "spawn": [1100, 540]},
+      {"id": "to_cave", "type": "exit", "rect": [1170, 380, 110, 260], "prop": "rect", "label": "Dark Cave", "color": [60, 60, 110],
+       "to": "dark_cave", "spawn": [140, 540],
+       "requires": {"any": [{"has": "lantern"}, {"has": "bubble_helmet"}]},
+       "blocked": [{"dialogue": "cave_too_dark"}]},
+
+      {"id": "snail", "type": "humor", "rect": [560, 600, 50, 32], "label": "snail", "color": [200, 170, 120],
+       "text": ["A snail. It's racing another snail. Nobody is winning.", "The snail looks at me. Very slowly. 'Hi,' it says, eventually.", "'Zoom,' whispers the snail. It has moved one centimeter."]},
+      {"id": "old_boot", "type": "humor", "rect": [760, 590, 64, 44], "label": "old boot", "color": [120, 90, 60],
+       "text": ["An old boot. A tiny fish lives inside and has put up curtains.", "Knock knock. The fish inside says, 'Nobody's home!'"]},
+      {"id": "sleepy_fish", "type": "humor", "rect": [380, 190, 80, 46], "label": "sleepy fish", "color": [170, 200, 240],
+       "text": ["Zzzz... A fish is napping in a kelp hammock.", "It mumbles 'five more minutes' and rolls over.", "It's snoring bubbles. Each one says 'z'."]},
+      {"id": "tickly_kelp", "type": "humor", "rect": [590, 130, 50, 130], "label": "kelp", "color": [60, 170, 90],
+       "text": ["Swish swish! The kelp is tickly.", "The kelp waves hello. Then goodbye. Then hello again."]}
+    ],
+    "hints": [
+      {"if": {"not_flag": "met_puffer"}, "text": "Mr. Puffer by the bubble machine looks grumpy. Say hello!"},
+      {"if": {"all": [{"not_flag": "machine_fixed"}, {"not_has": "gear"}, {"not_flag": "gear_installed"}]}, "text": "Something small and shiny is lying in the kelp near the bottom of the screen."},
+      {"if": {"all": [{"not_flag": "machine_fixed"}, {"has": "gear"}]}, "text": "Click the gear in your inventory, then click the bubble machine."},
+      {"if": {"all": [{"flag": "recipe_quest"}, {"not_flag": "recipe_returned"}, {"not_has": "recipe_page"}]}, "text": "Grandma's recipe page is stuck high up in the kelp."},
+      {"if": {"has": "conch_shell"}, "text": "Take the shell back to the Coral Reef and through the Festival Gate!"},
+      {"if": {"any": [{"has": "bubble_helmet"}, {"has": "lantern"}]}, "text": "The Dark Cave is to the right. You're ready to go in now!"},
+      {"text": "Shelly the turtle saw something. Talk to her, and look around for anything shiny."}
+    ]
+  },
+
+  "sunken_ship": {
+    "name": "Sunken Ship",
+    "background": "sunken_ship.png",
+    "palette": {"top": [25, 70, 110], "bottom": [5, 25, 50], "floor": [95, 75, 50], "accent": [200, 170, 110]},
+    "style": "ship", "floor_y": 410, "music": "underwater",
+    "walkable": [[40, 410], [1240, 410], [1240, 630], [40, 630]],
+    "spawn": [1120, 540],
+    "hotspots": [
+      {"id": "clam", "type": "npc", "character": "clam", "rect": [470, 370, 130, 120], "walk_to": [630, 570],
+       "counter": "clam_talks",
+       "dialogue": [
+         {"if": {"has": "pearl"}, "id": "clam_you_have_pearl"},
+         {"if": {"flag": "pearl_returned"}, "id": "clam_story"},
+         {"if": {"any": [{"has": "ship_key"}, {"flag": "treasure_room_open"}]}, "id": "clam_has_key"},
+         {"if": {"flag": "met_clam"}, "id": "clam_offer"},
+         {"id": "clam_intro"}
+       ],
+       "use": {
+         "pearl": {"consume": true, "actions": [{"set_flag": "pearl_returned"}, {"dialogue": "clam_pearl_return"}]},
+         "cookie": {"actions": [{"dialogue": "clam_cookie"}]},
+         "ship_key": {"actions": [{"say": "Captain Clam already gave me this. The treasure room door is over there."}]}
+       }},
+      {"id": "chest", "type": "object", "rect": [820, 540, 120, 76], "walk_to": [770, 590],
+       "prop": "rect", "label": "locked chest", "color": [125, 85, 45],
+       "hidden_if": {"flag": "chest_open"},
+       "on_click": [{"minigame": "shell_puzzle", "on_complete": [{"set_flag": "chest_open"}, {"say": "Click! The chest popped open. Something round is glowing inside."}]}],
+       "use": {"crowbar": {"actions": [{"say": "I don't need to pry it. The shells on the lid are a puzzle. I'll click the chest instead."}]}}},
+      {"id": "chest_open", "type": "object", "rect": [820, 540, 120, 76], "walk_to": [770, 590],
+       "prop": "rect", "label": "open chest", "color": [160, 120, 70],
+       "visible_if": {"flag": "chest_open"},
+       "examine": "The chest is open. Empty now, except for one very surprised sea slug."},
+      {"id": "pearl", "type": "item", "item": "pearl", "rect": [860, 500, 40, 40], "walk_to": [800, 590],
+       "visible_if": {"flag": "chest_open"}},
+      {"id": "treasure_door", "type": "object", "rect": [1080, 280, 130, 270], "walk_to": [1020, 570],
+       "prop": "rect", "label": "treasure room door", "color": [110, 70, 40],
+       "hidden_if": {"flag": "treasure_room_open"},
+       "dialogue": "door_locked",
+       "use": {
+         "ship_key": {"consume": true, "actions": [{"set_flag": "treasure_room_open"}, {"sound": "success"}, {"dialogue": "door_opens"}]},
+         "crowbar": {"actions": [{"say": "I'd rather not break the Captain's door. He'd tell that story for a hundred years."}]}
+       }},
+      {"id": "treasure_room", "type": "object", "rect": [1080, 280, 130, 270], "walk_to": [1020, 570],
+       "prop": "rect", "label": "treasure room", "color": [230, 190, 100],
+       "visible_if": {"flag": "treasure_room_open"},
+       "examine": "The treasure room! Mostly old spoons. But also a few really useful things."},
+      {"id": "lantern", "type": "item", "item": "lantern", "rect": [1100, 470, 46, 46], "walk_to": [1050, 570], "visible_if": {"flag": "treasure_room_open"}},
+      {"id": "crowbar", "type": "item", "item": "crowbar", "rect": [1165, 525, 46, 46], "walk_to": [1110, 580], "visible_if": {"flag": "treasure_room_open"}},
+      {"id": "glasses", "type": "item", "item": "glasses", "rect": [1110, 580, 42, 42], "walk_to": [1060, 600], "visible_if": {"flag": "treasure_room_open"}},
+
+      {"id": "to_reef", "type": "exit", "rect": [1170, 400, 110, 240], "prop": "arrow", "label": "Coral Reef", "color": [255, 160, 190],
+       "to": "coral_reef", "spawn": [160, 540]},
+
+      {"id": "pip", "type": "humor", "character": "pip", "rect": [660, 520, 56, 40], "speaker": "pip",
+       "text": ["(Pip shakes his head slowly.) He did NOT wrestle a kraken.", "It was a sock. A very big sock. I was there.", "Okay, the sock DID put up a fight."]},
+      {"id": "wheel", "type": "humor", "rect": [290, 240, 96, 96], "label": "ship's wheel", "color": [150, 100, 60],
+       "text": ["The ship's wheel spins! Nothing happens, because the ship is at the bottom of the sea.", "Hard to starboard! ...We're still here."]},
+      {"id": "porthole", "type": "humor", "rect": [760, 210, 74, 74], "label": "porthole", "color": [120, 170, 200],
+       "text": ["A fish peeks through the porthole from the OUTSIDE. 'Nice place,' it says.", "The porthole is a little window. The view is: more water."]},
+      {"id": "barrel", "type": "humor", "rect": [190, 560, 74, 70], "label": "barrel", "color": [130, 90, 55],
+       "text": ["A barrel. It says 'PICKLES'. There are no pickles. Only disappointment.", "Something inside the barrel giggles. Then stops. Then giggles again."]}
+    ],
+    "hints": [
+      {"if": {"not_flag": "met_clam"}, "text": "Captain Clam is bursting to tell a story. Click on him."},
+      {"if": {"has": "pearl"}, "text": "Give the pearl to Captain Clam: click it in your inventory, then click him."},
+      {"if": {"all": [{"flag": "chest_open"}, {"not_flag": "pearl_returned"}]}, "text": "The pearl is sitting in the open chest. Grab it!"},
+      {"if": {"all": [{"not_has": "ship_key"}, {"not_flag": "treasure_room_open"}]}, "text": "To get the key, open the chest for the Captain's pearl, or just tell him a joke."},
+      {"if": {"has": "ship_key"}, "text": "Use the Ship Key on the treasure room door at the right."},
+      {"if": {"all": [{"flag": "treasure_room_open"}, {"not_has": "lantern"}, {"not_flag": "picked_lantern"}]}, "text": "The treasure room is open! Pick up the lantern and anything else useful."},
+      {"if": {"has": "conch_shell"}, "text": "Take the shell back to the Coral Reef and through the Festival Gate!"},
+      {"text": "The Dark Cave is past the Kelp Forest. With the lantern you'll see everything in there."}
+    ]
+  },
+
+  "dark_cave": {
+    "name": "Dark Cave",
+    "background": "dark_cave.png",
+    "palette": {"top": [10, 20, 50], "bottom": [0, 5, 20], "floor": [45, 45, 75], "accent": [120, 255, 220]},
+    "style": "cave", "floor_y": 420, "music": "underwater",
+    "walkable": [[40, 420], [1240, 420], [1240, 630], [40, 630]],
+    "spawn": [140, 540],
+    "on_enter_once": [{"flag": "cave_entered", "actions": [{"dialogue": "cave_enter"}]}],
+    "hotspots": [
+      {"id": "bill", "type": "npc", "character": "bill", "rect": [560, 150, 540, 300], "walk_to": [480, 560], "facing": "left",
+       "counter": "bill_talks",
+       "dialogue": [
+         {"if": {"flag": "shell_returned"}, "id": "bill_after"},
+         {"if": {"flag": "shell_freed"}, "id": "bill_freed"},
+         {"if": {"all": [{"flag": "found_bill"}, {"any": [{"has": "bubble_helmet"}, {"has": "crowbar"}]}]}, "id": "bill_again_ready"},
+         {"if": {"flag": "found_bill"}, "id": "bill_again"},
+         {"id": "bill_intro"}
+       ],
+       "use": {
+         "bubble_helmet": {"actions": [{"dialogue": "bill_wrong_spot"}]},
+         "crowbar": {"actions": [{"dialogue": "bill_wrong_spot"}]},
+         "cookie": {"actions": [{"dialogue": "bill_cookie"}]}
+       }},
+      {"id": "stuck_shell", "type": "object", "rect": [990, 390, 120, 120], "walk_to": [930, 570],
+       "prop": "blob", "label": "stuck shell", "color": [255, 195, 175],
+       "hidden_if": {"flag": "shell_freed"},
+       "dialogue": [
+         {"if": {"not_flag": "found_bill"}, "id": "shell_before_bill"},
+         {"id": "shell_stuck"}
+       ],
+       "use": {
+         "bubble_helmet": {"if": {"flag": "found_bill"}, "else": [{"dialogue": "shell_before_bill"}],
+                           "actions": [{"set_flag": "shell_freed"}, {"sound": "success"}, {"dialogue": "shell_freed_bubble"}]},
+         "crowbar": {"if": {"flag": "found_bill"}, "else": [{"dialogue": "shell_before_bill"}],
+                     "actions": [{"set_flag": "shell_freed"}, {"sound": "success"}, {"dialogue": "shell_freed_crowbar"}]},
+         "shell_polish": {"actions": [{"say": "It's stuck too tight to polish. First I need to get it loose."}]}
+       }},
+
+      {"id": "to_kelp", "type": "exit", "rect": [0, 400, 100, 240], "prop": "arrow", "label": "Kelp Forest", "color": [120, 255, 160],
+       "to": "kelp_forest", "spawn": [1100, 540]},
+
+      {"id": "glow_mushrooms", "type": "humor", "rect": [190, 560, 90, 56], "label": "glowing mushrooms", "color": [120, 255, 220],
+       "text": ["Glowing mushrooms! One of them is glowing a little harder to show off.", "The mushrooms blink in a pattern. I think they're telling a joke."]},
+      {"id": "echo_spot", "type": "humor", "rect": [380, 190, 90, 90], "label": "echo spot", "color": [80, 100, 160],
+       "text": ["HELLO! ...hello... ...hello... ...hi.", "BAKER IS GREAT! ...is great... ...is okay, I guess...", "The echo says it's tired and could I please come back later."]},
+      {"id": "suspicious_rock", "type": "humor", "rect": [760, 585, 84, 50], "label": "rock", "color": [90, 90, 120],
+       "text": ["It's a rock. A perfectly normal rock. ...Did it just wink?", "The rock is definitely a rock. The rock would like you to stop staring."]},
+      {"id": "krill", "type": "humor", "rect": [290, 110, 130, 60], "label": "krill", "color": [255, 170, 150],
+       "text": ["A school of krill zips past. They're late for class.", "The krill form the shape of an arrow. Then a smiley face. Then they lose interest."]}
+    ],
+    "hints": [
+      {"if": {"not_flag": "found_bill"}, "text": "Something enormous and gray is in here. Click on it, gently."},
+      {"if": {"all": [{"not_flag": "shell_freed"}, {"any": [{"has": "bubble_helmet"}, {"has": "crowbar"}]}]}, "text": "Use the Bubble Helmet or the Crowbar on the shell stuck to Bill's tail."},
+      {"if": {"not_flag": "shell_freed"}, "text": "You need something to pop or pry the shell loose: Mr. Puffer's Bubble Helmet, or the crowbar from the ship's treasure room."},
+      {"text": "Take the shell to the Festival Gate in the Coral Reef!"}
+    ]
+  },
+
+  "festival_grounds": {
+    "name": "Festival Grounds",
+    "background": "festival_grounds.png",
+    "palette": {"top": [60, 40, 120], "bottom": [20, 20, 60], "floor": [225, 195, 145], "accent": [255, 230, 100]},
+    "style": "festival", "floor_y": 420, "music": "festival",
+    "walkable": [[40, 430], [1240, 430], [1240, 630], [40, 630]],
+    "spawn": [640, 560],
+    "hotspots": [
+      {"id": "dj", "type": "npc", "character": "dj", "rect": [530, 230, 180, 180], "walk_to": [620, 570],
+       "counter": "dj_talks",
+       "dialogue": [
+         {"if": {"flag": "game_won"}, "id": "dj_after"},
+         {"if": {"has": "conch_shell"}, "id": "dj_return"},
+         {"id": "dj_intro"}
+       ],
+       "use": {
+         "conch_shell": {"actions": [{"dialogue": "dj_return"}]},
+         "cookie": {"actions": [{"dialogue": "dj_cookie"}]},
+         "dance_shoes": {"actions": [{"dialogue": "dj_shoes"}]}
+       }},
+      {"id": "stage", "type": "object", "rect": [430, 410, 380, 30], "prop": "rect", "label": "stage", "color": [200, 80, 120],
+       "examine": "The big stage. The Great Conch Shell goes right in the middle, where everyone can hear it hum."},
+      {"id": "dance_floor", "type": "object", "rect": [850, 520, 230, 80], "walk_to": [965, 600],
+       "prop": "rect", "label": "dance floor", "color": [255, 120, 220],
+       "on_click": [{"if": {"has": "dance_shoes"},
+                     "then": [{"sound": "success"}, {"say": "Baker does the Sidney Sideways Shuffle! The crowd goes wild."}],
+                     "else": [{"say": "A sparkly dance floor. Baker wiggles a fin. Sidney the crab in the reef could teach me some real moves."}]}]},
+      {"id": "cookie_table", "type": "object", "rect": [200, 500, 130, 70], "prop": "rect", "label": "cookie table", "color": [210, 160, 100],
+       "visible_if": {"flag": "recipe_returned"},
+       "examine": "Grandma's kelp cookies, stacked to the ceiling. The secret ingredient is love. And seaweed."},
+
+      {"id": "to_reef", "type": "exit", "rect": [0, 420, 100, 220], "prop": "arrow", "label": "Coral Reef", "color": [255, 160, 190],
+       "to": "coral_reef", "spawn": [640, 420]},
+
+      {"id": "balloon", "type": "humor", "rect": [1090, 190, 80, 100], "label": "balloon", "color": [255, 90, 90],
+       "text": ["A balloon! Underwater balloons float DOWN. Nobody knows why.", "The balloon squeaks when I poke it. It sounds offended."]},
+      {"id": "snack_stall", "type": "humor", "rect": [150, 320, 170, 140], "label": "snack stall", "color": [255, 200, 120],
+       "text": ["Kelp dogs! Sea-salt popcorn! Plankton on a stick!", "The snack stall sells 'water'. Business is slow.", "A sign says: 'Try our famous sandwich.' Shelly would love that."]},
+      {"id": "speakers", "type": "humor", "rect": [370, 310, 120, 130], "label": "speakers", "color": [60, 60, 80],
+       "text": ["BOOM boom BOOM. The speakers are so big the sand is dancing.", "A tiny shrimp is sitting on the speaker, enjoying the bass."]},
+      {"id": "confetti_cannon", "type": "humor", "rect": [990, 460, 100, 60], "label": "confetti cannon", "color": [120, 220, 255],
+       "sound": "success",
+       "text": ["POOF! Confetti everywhere. Sidney the crab is going to be finding bits of it for weeks.", "POOF! This time it was glitter. Oh no. Glitter is forever."]}
+    ],
+    "hints": [
+      {"if": {"has": "conch_shell"}, "text": "DJ Dolphin is on the stage. Give him the shell!"},
+      {"text": "Try clicking on everything. The festival is full of surprises."}
+    ]
+  }
+}
