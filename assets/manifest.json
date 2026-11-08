@@ -1,0 +1,79 @@
+{
+  "_readme": "Drop real files with these names into assets/ to replace the placeholders. Backgrounds are 1280x640 (the window is 1280x720; the bottom 80px is the inventory bar).",
+  "backgrounds": {
+    "coral_reef": "coral_reef.png",
+    "kelp_forest": "kelp_forest.png",
+    "sunken_ship": "sunken_ship.png",
+    "dark_cave": "dark_cave.png",
+    "festival_grounds": "festival_grounds.png"
+  },
+  "characters": {
+    "baker": {
+      "sprite": "baker.png",
+      "portrait": "baker_portrait.png"
+    },
+    "coral": {
+      "sprite": "coral.png",
+      "portrait": "coral_portrait.png"
+    },
+    "grandma": {
+      "sprite": "grandma.png",
+      "portrait": "grandma_portrait.png"
+    },
+    "puffer": {
+      "sprite": "puffer.png",
+      "portrait": "puffer_portrait.png"
+    },
+    "shelly": {
+      "sprite": "shelly.png",
+      "portrait": "shelly_portrait.png"
+    },
+    "clam": {
+      "sprite": "clam.png",
+      "portrait": "clam_portrait.png"
+    },
+    "bill": {
+      "sprite": "bill.png",
+      "portrait": "bill_portrait.png"
+    },
+    "dj": {
+      "sprite": "dj.png",
+      "portrait": "dj_portrait.png"
+    },
+    "sidney": {
+      "sprite": "sidney.png",
+      "portrait": "sidney_portrait.png"
+    },
+    "pip": {
+      "sprite": "pip.png",
+      "portrait": "pip_portrait.png"
+    },
+    "narrator": {
+      "sprite": null,
+      "portrait": "narrator_portrait.png"
+    }
+  },
+  "items": {
+    "gear": "gear.png",
+    "bubble_helmet": "helmet.png",
+    "glasses": "glasses.png",
+    "shell_polish": "polish.png",
+    "ship_key": "key.png",
+    "lantern": "lantern.png",
+    "crowbar": "crowbar.png",
+    "pearl": "pearl.png",
+    "recipe_page": "recipe.png",
+    "cookie": "cookie.png",
+    "dance_shoes": "shoes.png",
+    "conch_shell": "conch.png"
+  },
+  "audio": {
+    "underwater": "audio/underwater.wav (or .ogg)",
+    "festival": "audio/festival.wav (or .ogg)",
+    "bubble": "audio/bubble.wav (or .ogg)",
+    "click": "audio/click.wav (or .ogg)",
+    "pickup": "audio/pickup.wav (or .ogg)",
+    "success": "audio/success.wav (or .ogg)"
+  },
+  "voice": "audio/voice/<dialogue_id>_<line number>.ogg  (see tools/export_voice_script.py)"
+}
