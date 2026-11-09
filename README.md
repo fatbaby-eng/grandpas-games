@@ -6,7 +6,7 @@ its own folder with its own README and run instructions.
 | Game | Folder | What it is |
 |---|---|---|
 | Baker's Undersea Adventure | `bakers-undersea-adventure/` | A point-and-click adventure in the Freddi Fish tradition. Python / pygame-ce. |
-| Baker's Peek-a-Boo World | `peek-a-boo/` | Tap-to-reveal games for ages 1 to 3 and up, four tiers and 18 levels. Single HTML file, runs in any browser or on a phone home screen. |
+| Baker's Peek-a-Boo World | `peek-a-boo/` | Tap-to-reveal games for ages 1 to 5, four bands and 18 levels, nine friends, Grandpa's recorded voice. Single HTML file, runs in any browser or on a phone home screen. |
 
 ## Running a game
 

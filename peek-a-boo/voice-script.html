@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#FFF8F0">
+<title>Peek-a-Boo voice script</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --cream:#FFF8F0; --ink:#4A4458; --mid:#7A7490; --light:#A8A2B8; --coral:#E88B73; --blush:#FDE8E4; --sage:#8BBF8E; --sage-light:#DFF0DF; --lav:#E8DFF5; --sky:#DBE9F7; }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html, body { height:100%; background:var(--cream); color:var(--ink); font-family:'Fredoka','Quicksand',system-ui,-apple-system,sans-serif; }
+  body { display:flex; flex-direction:column; min-height:100dvh; padding: max(env(safe-area-inset-top),12px) 16px max(env(safe-area-inset-bottom),12px); background:linear-gradient(175deg,#E8DFF5 0%,#DBE9F7 25%,#FFF8F0 55%,#FDE8E4 100%); background-attachment:fixed; }
+  header { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-shrink:0; }
+  .pill { background:rgba(255,255,255,.75); border:1px solid rgba(255,255,255,.7); border-radius:20px; padding:8px 14px; font-size:15px; font-weight:600; color:var(--mid); white-space:nowrap; }
+  button { font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+  .tab { background:rgba(255,255,255,.75); border:1px solid rgba(255,255,255,.7); border-radius:20px; padding:8px 14px; font-size:15px; font-weight:600; color:var(--mid); }
+  .tab.on { background:var(--coral); color:#fff; }
+  main { flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+  .card { background:rgba(255,255,255,.72); border:1px solid rgba(255,255,255,.8); border-radius:28px; padding:28px 22px; box-shadow:0 10px 40px rgba(74,68,88,.08); text-align:center; display:flex; flex-direction:column; gap:14px; align-items:center; }
+  .tier { font-size:15px; color:var(--light); font-weight:600; letter-spacing:.3px; text-transform:uppercase; }
+  .line { font-size:clamp(34px, 9vw, 56px); line-height:1.15; font-weight:700; color:var(--ink); text-wrap:balance; }
+  .note { font-size:18px; color:var(--mid); min-height:1.4em; }
+  .file { font-size:16px; color:var(--light); background:rgba(255,255,255,.7); border-radius:12px; padding:6px 12px; font-family:ui-monospace,Menlo,monospace; }
+  .file b { color:var(--mid); font-weight:600; font-family:inherit; }
+  .done { margin-top:4px; width:100%; max-width:360px; padding:18px; border-radius:22px; font-size:22px; font-weight:700; background:#fff; color:var(--sage); border:3px solid var(--sage); }
+  .done.on { background:var(--sage); color:#fff; }
+  nav { display:flex; gap:12px; flex-shrink:0; padding-top:14px; }
+  nav button { flex:1; padding:20px; border-radius:22px; font-size:22px; font-weight:700; background:rgba(255,255,255,.8); color:var(--ink); border:1px solid rgba(255,255,255,.8); }
+  nav button.next { flex:2; background:linear-gradient(135deg,var(--coral),#F8C8C8); color:#fff; }
+  nav button:disabled { opacity:.35; }
+  .list { overflow:auto; padding:6px 0; -webkit-overflow-scrolling:touch; }
+  .list h2 { font-size:18px; color:var(--mid); margin:18px 4px 8px; }
+  .list p { font-size:15px; color:var(--light); margin:0 4px 10px; }
+  .row { display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:rgba(255,255,255,.72); border:1px solid rgba(255,255,255,.8); border-radius:16px; padding:14px 16px; margin-bottom:8px; font-size:22px; font-weight:600; color:var(--ink); }
+  .row .chk { width:30px; height:30px; border-radius:50%; border:2.5px solid var(--sage); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; }
+  .row.on .chk { background:var(--sage); }
+  .row.on { color:var(--light); }
+  .row small { display:block; font-size:13px; color:var(--light); font-weight:500; font-family:ui-monospace,Menlo,monospace; }
+  .tips { font-size:19px; line-height:1.45; color:var(--mid); padding:8px 4px 20px; }
+  .tips li { margin:0 0 12px 22px; }
+  .tips b { color:var(--ink); }
+  .foot { text-align:center; font-size:14px; color:var(--light); padding-top:10px; flex-shrink:0; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<header>
+  <div class="pill" id="progress"></div>
+  <div style="display:flex;gap:6px">
+    <button class="tab on" id="tabCard">Card</button>
+    <button class="tab" id="tabList">List</button>
+    <button class="tab" id="tabTips">Tips</button>
+  </div>
+</header>
+
+<main id="cardView">
+  <div class="card">
+    <div class="tier" id="tierName"></div>
+    <div class="line" id="line"></div>
+    <div class="note" id="note"></div>
+    <div class="file">save as <b id="file"></b></div>
+    <button class="done" id="done">Mark recorded</button>
+  </div>
+</main>
+<nav id="cardNav">
+  <button id="prev">Back</button>
+  <button class="next" id="next">Next</button>
+</nav>
+
+<main id="listView" hidden><div class="list" id="list"></div></main>
+
+<main id="tipsView" hidden>
+  <div class="list tips">
+    <ul>
+      <li><b>Where.</b> A small room with soft stuff in it. A closet full of clothes is the classic. No fan, no fridge hum, no dishwasher.</li>
+      <li><b>What.</b> Voice Memos is fine. Hold the phone a hand's width from your mouth, a little off to the side so P and B don't pop. Same spot every time.</li>
+      <li><b>How.</b> Warm, slow, smiling. You're talking to Baker across the kitchen table, not announcing. He hears tone long before words.</li>
+      <li><b>One clip per line.</b> Record, wait a beat, say it, wait a beat, stop. The build tool trims the silence. Keep each under two seconds.</li>
+      <li><b>Names first.</b> Do a few takes of each name and keep the one that sounds most like you.</li>
+      <li><b>Naming the clips.</b> Rename each recording to the "save as" name shown on its card. Any of .m4a, .mp3, .aac or .wav works.</li>
+      <li><b>When you're done</b> (or have a batch), put the clips in one folder and run the build command from the README. Lines you haven't recorded keep the phone's voice.</li>
+      <li><b>This page</b> remembers what you've marked recorded on this phone. Reset is at the bottom of the List tab.</li>
+    </ul>
+  </div>
+</main>
+<div class="foot">Baker's Peek-a-Boo · voice script · 154 lines · recorded through November 8</div>
+
+<script>
+var TIERS = [{"title": "The names", "blurb": "Sixteen clips. These play on every tap, so they matter most.", "items": [{"file": "duck", "line": "Duck!", "note": "like you just spotted it"}, {"file": "piggy", "line": "Piggy!", "note": "like you just spotted it"}, {"file": "owl", "line": "Owl!", "note": "like you just spotted it"}, {"file": "horse", "line": "Horse!", "note": "like you just spotted it"}, {"file": "sheep", "line": "Sheep!", "note": "like you just spotted it"}, {"file": "tractor", "line": "Tractor!", "note": "like you just spotted it"}, {"file": "train", "line": "Train!", "note": "like you just spotted it"}, {"file": "firetruck", "line": "Firetruck!", "note": "like you just spotted it"}, {"file": "dino", "line": "Dino!", "note": "like you just spotted it"}, {"file": "baker", "line": "Baker!", "note": "his name, the warmest one"}, {"file": "top_hat", "line": "Top Hat!", "note": "a little silly"}, {"file": "crown", "line": "Crown!", "note": "a little silly"}, {"file": "cool_shades", "line": "Cool Shades!", "note": "a little silly"}, {"file": "hair_bow", "line": "Hair Bow!", "note": "a little silly"}, {"file": "flower", "line": "Flower!", "note": "a little silly"}, {"file": "heart", "line": "Heart!", "note": "a little silly"}]}, {"title": "Prompts that never change", "blurb": "Thirty-three clips. The numbers are for counting, so say them like you're pointing.", "items": [{"file": "tap_anywhere_who_s_hiding", "line": "Tap anywhere. Who's hiding?", "note": "inviting"}, {"file": "some_spots_are_empty_keep_looking", "line": "Some spots are empty. Keep looking!", "note": "encouraging"}, {"file": "say_hi_to_everyone", "line": "Say hi to everyone!", "note": "cheerful"}, {"file": "who_sings_this", "line": "Who sings this?", "note": "curious"}, {"file": "find_the_one_that_looks_the_same", "line": "Find the one that looks the same.", "note": "slow and clear"}, {"file": "open_the_gifts", "line": "Open the gifts!", "note": "excited"}, {"file": "flip_the_cards_find_the_pairs", "line": "Flip the cards. Find the pairs!", "note": ""}, {"file": "not_a_pair_try_again", "line": "Not a pair. Try again!", "note": "kind, not a buzzer"}, {"file": "who_s_that_look_at_the_shadow", "line": "Who's that? Look at the shadow.", "note": "a little mysterious"}, {"file": "which_one_is_different", "line": "Which one is different?", "note": ""}, {"file": "count_the_butterflies", "line": "Count the butterflies!", "note": ""}, {"file": "how_many_butterflies_tap_the_number", "line": "How many butterflies? Tap the number.", "note": ""}, {"file": "what_comes_next", "line": "What comes next?", "note": ""}, {"file": "animals_go_to_the_barn_vehicles_go_to_the_garage", "line": "Animals go to the barn. Vehicles go to the garage.", "note": "slow, two clear halves"}, {"file": "the_barn_is_for_animals", "line": "The barn is for animals.", "note": ""}, {"file": "the_garage_is_for_vehicles", "line": "The garage is for vehicles.", "note": ""}, {"file": "the_big_one", "line": "The big one!", "note": "big voice"}, {"file": "the_little_one", "line": "The little one!", "note": "little voice"}, {"file": "band_2_big_helper", "line": "Band 2. Big Helper!", "note": "proud"}, {"file": "band_3_clever_kid", "line": "Band 3. Clever Kid!", "note": "proud"}, {"file": "band_4_big_kid", "line": "Band 4. Big Kid!", "note": "proud"}, {"file": "1", "line": "1.", "note": "counting, like pointing at a butterfly"}, {"file": "2", "line": "2.", "note": "counting, like pointing at a butterfly"}, {"file": "3", "line": "3.", "note": "counting, like pointing at a butterfly"}, {"file": "4", "line": "4.", "note": "counting, like pointing at a butterfly"}, {"file": "5", "line": "5.", "note": "counting, like pointing at a butterfly"}, {"file": "6", "line": "6.", "note": "counting, like pointing at a butterfly"}, {"file": "1_that_s_right", "line": "1! That's right!", "note": ""}, {"file": "2_that_s_right", "line": "2! That's right!", "note": ""}, {"file": "3_that_s_right", "line": "3! That's right!", "note": ""}, {"file": "4_that_s_right", "line": "4! That's right!", "note": ""}, {"file": "5_that_s_right", "line": "5! That's right!", "note": ""}, {"file": "6_that_s_right", "line": "6! That's right!", "note": ""}]}, {"title": "Prompts with a name in them", "blurb": "Eighty-nine clips. A second sitting. Anything you skip stays in the phone's voice until you get to it.", "items": [{"file": "find_duck", "line": "Find Duck!", "note": ""}, {"file": "find_piggy", "line": "Find Piggy!", "note": ""}, {"file": "find_owl", "line": "Find Owl!", "note": ""}, {"file": "find_horse", "line": "Find Horse!", "note": ""}, {"file": "find_sheep", "line": "Find Sheep!", "note": ""}, {"file": "find_tractor", "line": "Find Tractor!", "note": ""}, {"file": "find_train", "line": "Find Train!", "note": ""}, {"file": "find_firetruck", "line": "Find Firetruck!", "note": ""}, {"file": "find_dino", "line": "Find Dino!", "note": ""}, {"file": "watch_duck_hide", "line": "Watch Duck hide!", "note": "a stage whisper"}, {"file": "watch_piggy_hide", "line": "Watch Piggy hide!", "note": "a stage whisper"}, {"file": "watch_owl_hide", "line": "Watch Owl hide!", "note": "a stage whisper"}, {"file": "watch_horse_hide", "line": "Watch Horse hide!", "note": "a stage whisper"}, {"file": "watch_sheep_hide", "line": "Watch Sheep hide!", "note": "a stage whisper"}, {"file": "watch_tractor_hide", "line": "Watch Tractor hide!", "note": "a stage whisper"}, {"file": "watch_train_hide", "line": "Watch Train hide!", "note": "a stage whisper"}, {"file": "watch_firetruck_hide", "line": "Watch Firetruck hide!", "note": "a stage whisper"}, {"file": "watch_dino_hide", "line": "Watch Dino hide!", "note": "a stage whisper"}, {"file": "where_did_duck_go", "line": "Where did Duck go?", "note": "real peek-a-boo voice"}, {"file": "where_did_piggy_go", "line": "Where did Piggy go?", "note": "real peek-a-boo voice"}, {"file": "where_did_owl_go", "line": "Where did Owl go?", "note": "real peek-a-boo voice"}, {"file": "where_did_horse_go", "line": "Where did Horse go?", "note": "real peek-a-boo voice"}, {"file": "where_did_sheep_go", "line": "Where did Sheep go?", "note": "real peek-a-boo voice"}, {"file": "where_did_tractor_go", "line": "Where did Tractor go?", "note": "real peek-a-boo voice"}, {"file": "where_did_train_go", "line": "Where did Train go?", "note": "real peek-a-boo voice"}, {"file": "where_did_firetruck_go", "line": "Where did Firetruck go?", "note": "real peek-a-boo voice"}, {"file": "where_did_dino_go", "line": "Where did Dino go?", "note": "real peek-a-boo voice"}, {"file": "tap_the_big_duck", "line": "Tap the big Duck.", "note": "big voice"}, {"file": "tap_the_big_piggy", "line": "Tap the big Piggy.", "note": "big voice"}, {"file": "tap_the_big_owl", "line": "Tap the big Owl.", "note": "big voice"}, {"file": "tap_the_big_horse", "line": "Tap the big Horse.", "note": "big voice"}, {"file": "tap_the_big_sheep", "line": "Tap the big Sheep.", "note": "big voice"}, {"file": "tap_the_big_tractor", "line": "Tap the big Tractor.", "note": "big voice"}, {"file": "tap_the_big_train", "line": "Tap the big Train.", "note": "big voice"}, {"file": "tap_the_big_firetruck", "line": "Tap the big Firetruck.", "note": "big voice"}, {"file": "tap_the_big_dino", "line": "Tap the big Dino.", "note": "big voice"}, {"file": "tap_the_little_duck", "line": "Tap the little Duck.", "note": "little voice"}, {"file": "tap_the_little_piggy", "line": "Tap the little Piggy.", "note": "little voice"}, {"file": "tap_the_little_owl", "line": "Tap the little Owl.", "note": "little voice"}, {"file": "tap_the_little_horse", "line": "Tap the little Horse.", "note": "little voice"}, {"file": "tap_the_little_sheep", "line": "Tap the little Sheep.", "note": "little voice"}, {"file": "tap_the_little_tractor", "line": "Tap the little Tractor.", "note": "little voice"}, {"file": "tap_the_little_train", "line": "Tap the little Train.", "note": "little voice"}, {"file": "tap_the_little_firetruck", "line": "Tap the little Firetruck.", "note": "little voice"}, {"file": "tap_the_little_dino", "line": "Tap the little Dino.", "note": "little voice"}, {"file": "two_ducks_a_pair", "line": "Two Ducks! A pair!", "note": ""}, {"file": "two_piggys_a_pair", "line": "Two Piggys! A pair!", "note": ""}, {"file": "two_owls_a_pair", "line": "Two Owls! A pair!", "note": ""}, {"file": "two_horses_a_pair", "line": "Two Horses! A pair!", "note": ""}, {"file": "two_sheeps_a_pair", "line": "Two Sheeps! A pair!", "note": ""}, {"file": "two_tractors_a_pair", "line": "Two Tractors! A pair!", "note": ""}, {"file": "two_trains_a_pair", "line": "Two Trains! A pair!", "note": ""}, {"file": "two_firetrucks_a_pair", "line": "Two Firetrucks! A pair!", "note": ""}, {"file": "two_dinos_a_pair", "line": "Two Dinos! A pair!", "note": ""}, {"file": "duck_goes_in_the_barn", "line": "Duck goes in the barn!", "note": ""}, {"file": "piggy_goes_in_the_barn", "line": "Piggy goes in the barn!", "note": ""}, {"file": "owl_goes_in_the_barn", "line": "Owl goes in the barn!", "note": ""}, {"file": "horse_goes_in_the_barn", "line": "Horse goes in the barn!", "note": ""}, {"file": "sheep_goes_in_the_barn", "line": "Sheep goes in the barn!", "note": ""}, {"file": "tractor_goes_in_the_garage", "line": "Tractor goes in the garage!", "note": ""}, {"file": "train_goes_in_the_garage", "line": "Train goes in the garage!", "note": ""}, {"file": "firetruck_goes_in_the_garage", "line": "Firetruck goes in the garage!", "note": ""}, {"file": "dino_goes_in_the_barn", "line": "Dino goes in the barn!", "note": ""}, {"file": "find_the_red_gift", "line": "Find the red gift.", "note": ""}, {"file": "find_the_blue_gift", "line": "Find the blue gift.", "note": ""}, {"file": "find_the_green_gift", "line": "Find the green gift.", "note": ""}, {"file": "find_the_yellow_gift", "line": "Find the yellow gift.", "note": ""}, {"file": "find_the_purple_gift", "line": "Find the purple gift.", "note": ""}, {"file": "find_the_pink_gift", "line": "Find the pink gift.", "note": ""}, {"file": "d_is_for_duck_find_duck", "line": "D is for Duck. Find Duck!", "note": "say the letter, then the name"}, {"file": "d_is_for_duck", "line": "D is for Duck!", "note": ""}, {"file": "p_is_for_piggy_find_piggy", "line": "P is for Piggy. Find Piggy!", "note": "say the letter, then the name"}, {"file": "p_is_for_piggy", "line": "P is for Piggy!", "note": ""}, {"file": "o_is_for_owl_find_owl", "line": "O is for Owl. Find Owl!", "note": "say the letter, then the name"}, {"file": "o_is_for_owl", "line": "O is for Owl!", "note": ""}, {"file": "h_is_for_horse_find_horse", "line": "H is for Horse. Find Horse!", "note": "say the letter, then the name"}, {"file": "h_is_for_horse", "line": "H is for Horse!", "note": ""}, {"file": "s_is_for_sheep_find_sheep", "line": "S is for Sheep. Find Sheep!", "note": "say the letter, then the name"}, {"file": "s_is_for_sheep", "line": "S is for Sheep!", "note": ""}, {"file": "t_is_for_tractor_find_tractor", "line": "T is for Tractor. Find Tractor!", "note": "say the letter, then the name"}, {"file": "t_is_for_tractor", "line": "T is for Tractor!", "note": ""}, {"file": "t_is_for_train_find_train", "line": "T is for Train. Find Train!", "note": "say the letter, then the name"}, {"file": "t_is_for_train", "line": "T is for Train!", "note": ""}, {"file": "f_is_for_firetruck_find_firetruck", "line": "F is for Firetruck. Find Firetruck!", "note": "say the letter, then the name"}, {"file": "f_is_for_firetruck", "line": "F is for Firetruck!", "note": ""}, {"file": "d_is_for_dino_find_dino", "line": "D is for Dino. Find Dino!", "note": "say the letter, then the name"}, {"file": "d_is_for_dino", "line": "D is for Dino!", "note": ""}, {"file": "b_is_for_baker_find_baker", "line": "B is for Baker. Find Baker!", "note": "say the letter, then the name"}, {"file": "b_is_for_baker", "line": "B is for Baker!", "note": ""}]}, {"title": "Sounds and music", "blurb": "Optional. The game makes these with beeps right now. Record any of them and they take over. Same folder, same build step.", "items": [{"file": "sfx_duck", "line": "Quack! Quack!", "note": "two quick quacks"}, {"file": "sfx_pig", "line": "Oink, oink!", "note": "snorty"}, {"file": "sfx_owl", "line": "Hoo, hoo!", "note": "low and soft"}, {"file": "sfx_horse", "line": "Neigh!", "note": "a whinny, about a second"}, {"file": "sfx_sheep", "line": "Baa-aa!", "note": "wobbly"}, {"file": "sfx_tractor", "line": "Putt-putt-putt-putt", "note": "an engine, about a second"}, {"file": "sfx_train", "line": "Choo-choo! Woo-woo!", "note": "the whistle"}, {"file": "sfx_firetruck", "line": "Wee-oo, wee-oo!", "note": "a siren, two swoops"}, {"file": "sfx_dino", "line": "Rawr!", "note": "big but friendly, not scary"}, {"file": "sfx_chime", "line": "Ding!", "note": "a happy little note, or three rising notes; a toy xylophone works"}, {"file": "sfx_celebration", "line": "Yaaay! (clap clap clap)", "note": "about two seconds, the round-won cheer"}, {"file": "sfx_empty", "line": "Hmm, not there.", "note": "a soft two-note hum, or a gentle uh-oh"}, {"file": "sfx_nudge", "line": "Psst!", "note": "the idle nudge, quiet"}, {"file": "sfx_flip", "line": "Tick.", "note": "a tongue click, very short; memory cards flipping"}, {"file": "sfx_count", "line": "Ding.", "note": "one short note; the game repeats it once per number"}, {"file": "music_loop", "line": "A gentle hum or lullaby, 20 to 40 seconds, that can repeat", "note": "plays softly during play; optional"}]}];
+var items = []; TIERS.forEach(function(t, ti) { t.items.forEach(function(it) { items.push({ tier: t.title, tierIndex: ti, file: it.file, line: it.line, note: it.note }); }); });
+var KEY = 'peek-voice-script';
+var PRESET_DONE = ["1", "1_that_s_right", "2", "2_that_s_right", "3", "3_that_s_right", "4", "4_that_s_right", "5", "5_that_s_right", "6", "6_that_s_right", "animals_go_to_the_barn_vehicles_go_to_the_garage", "b_is_for_baker", "b_is_for_baker_find_baker", "baker", "band_2_big_helper", "band_3_clever_kid", "band_4_big_kid", "cool_shades", "count_the_butterflies", "crown", "d_is_for_duck", "d_is_for_duck_find_duck", "duck", "duck_goes_in_the_barn", "f_is_for_firetruck", "f_is_for_firetruck_find_firetruck", "find_duck", "find_firetruck", "find_horse", "find_owl", "find_piggy", "find_sheep", "find_the_green_gift", "find_the_one_that_looks_the_same", "find_the_pink_gift", "find_the_purple_gift", "find_the_yellow_gift", "find_tractor", "find_train", "firetruck", "firetruck_goes_in_the_garage", "flip_the_cards_find_the_pairs", "flower", "h_is_for_horse", "h_is_for_horse_find_horse", "hair_bow", "heart", "horse", "horse_goes_in_the_barn", "how_many_butterflies_tap_the_number", "not_a_pair_try_again", "o_is_for_owl", "o_is_for_owl_find_owl", "open_the_gifts", "owl", "owl_goes_in_the_barn", "p_is_for_piggy", "p_is_for_piggy_find_piggy", "piggy", "piggy_goes_in_the_barn", "s_is_for_sheep", "s_is_for_sheep_find_sheep", "say_hi_to_everyone", "sheep", "sheep_goes_in_the_barn", "some_spots_are_empty_keep_looking", "t_is_for_tractor", "t_is_for_tractor_find_tractor", "t_is_for_train", "t_is_for_train_find_train", "tap_anywhere_who_s_hiding", "tap_the_big_duck", "tap_the_big_firetruck", "tap_the_big_horse", "tap_the_big_owl", "tap_the_big_piggy", "tap_the_big_sheep", "tap_the_big_tractor", "tap_the_big_train", "tap_the_little_duck", "tap_the_little_firetruck", "tap_the_little_horse", "tap_the_little_owl", "tap_the_little_piggy", "tap_the_little_sheep", "tap_the_little_tractor", "tap_the_little_train", "the_barn_is_for_animals", "the_big_one", "the_garage_is_for_vehicles", "the_little_one", "top_hat", "tractor", "tractor_goes_in_the_garage", "train", "train_goes_in_the_garage", "two_ducks_a_pair", "two_firetrucks_a_pair", "two_horses_a_pair", "two_owls_a_pair", "two_piggys_a_pair", "two_sheeps_a_pair", "two_tractors_a_pair", "two_trains_a_pair", "watch_duck_hide", "watch_firetruck_hide", "watch_horse_hide", "watch_owl_hide", "watch_piggy_hide", "watch_sheep_hide", "watch_tractor_hide", "watch_train_hide", "what_comes_next", "where_did_duck_go", "where_did_horse_go", "where_did_owl_go", "where_did_piggy_go", "where_did_sheep_go", "where_did_tractor_go", "where_did_train_go", "which_one_is_different", "who_s_that_look_at_the_shadow", "who_sings_this"];
+var done = {}; try { done = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) {}
+PRESET_DONE.forEach(function(f) { done[f] = 1; });
+var idx = 0; try { idx = Math.min(items.length - 1, parseInt(localStorage.getItem(KEY + '-idx') || '0', 10) || 0); } catch (e) {}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); localStorage.setItem(KEY + '-idx', String(idx)); } catch (e) {} }
+function count() { var n = 0; items.forEach(function(it) { if (done[it.file]) n++; }); return n; }
+var $ = function(id) { return document.getElementById(id); };
+function render() {
+  var it = items[idx];
+  $('tierName').textContent = it.tier + ' · ' + (idx + 1) + ' of ' + items.length;
+  $('line').textContent = it.line;
+  $('note').textContent = it.note ? '(' + it.note + ')' : '';
+  $('file').textContent = it.file;
+  var d = !!done[it.file];
+  $('done').textContent = d ? '✓ Recorded' : 'Mark recorded';
+  $('done').className = 'done' + (d ? ' on' : '');
+  $('prev').disabled = idx === 0;
+  $('next').textContent = idx === items.length - 1 ? 'Done!' : 'Next';
+  $('progress').textContent = count() + ' / ' + items.length + ' recorded';
+  save();
+}
+function renderList() {
+  var h = '';
+  TIERS.forEach(function(t, ti) {
+    var n = t.items.filter(function(it) { return done[it.file]; }).length;
+    h += '<h2>' + esc(t.title) + ' · ' + n + ' / ' + t.items.length + '</h2><p>' + esc(t.blurb) + '</p>';
+    t.items.forEach(function(it) {
+      var i = items.findIndex(function(x) { return x.file === it.file; });
+      h += '<button class="row' + (done[it.file] ? ' on' : '') + '" data-i="' + i + '"><span class="chk">' + (done[it.file] ? '✓' : '') + '</span><span>' + esc(it.line) + '<small>' + esc(it.file) + '</small></span></button>';
+    });
+  });
+  h += '<p style="text-align:center;padding:16px 0"><button class="tab" id="reset">Clear all check marks</button></p>';
+  $('list').innerHTML = h;
+  $('list').querySelectorAll('.row').forEach(function(b) { b.addEventListener('click', function() { idx = parseInt(b.getAttribute('data-i'), 10); show('card'); }); });
+  $('reset').addEventListener('click', function() { if (confirm('Clear every check mark?')) { done = {}; save(); renderList(); render(); } });
+}
+function esc(s) { return String(s).replace(/[&<>"]/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+function show(which) {
+  $('cardView').hidden = which !== 'card'; $('cardNav').hidden = which !== 'card';
+  $('listView').hidden = which !== 'list'; $('tipsView').hidden = which !== 'tips';
+  $('tabCard').className = 'tab' + (which === 'card' ? ' on' : '');
+  $('tabList').className = 'tab' + (which === 'list' ? ' on' : '');
+  $('tabTips').className = 'tab' + (which === 'tips' ? ' on' : '');
+  if (which === 'list') renderList(); else render();
+}
+$('done').addEventListener('click', function() { var f = items[idx].file; if (done[f]) delete done[f]; else done[f] = 1; render(); });
+$('next').addEventListener('click', function() { if (idx < items.length - 1) { idx++; render(); } else show('list'); });
+$('prev').addEventListener('click', function() { if (idx > 0) { idx--; render(); } });
+$('tabCard').addEventListener('click', function() { show('card'); });
+$('tabList').addEventListener('click', function() { show('list'); });
+$('tabTips').addEventListener('click', function() { show('tips'); });
+var sx = null;
+document.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', function(e) { if (sx == null || $('cardView').hidden) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (dx < -60 && idx < items.length - 1) { idx++; render(); } else if (dx > 60 && idx > 0) { idx--; render(); } }, { passive: true });
+document.addEventListener('keydown', function(e) { if (e.key === 'ArrowRight') $('next').click(); if (e.key === 'ArrowLeft') $('prev').click(); if (e.key === ' ') { e.preventDefault(); $('done').click(); } });
+render();
+</script>
+</body>
+</html>

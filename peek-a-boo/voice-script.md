@@ -17,7 +17,7 @@ Everything the game says, in the order worth recording it. Each line has a **fil
 2. From the repo, run:
 
 ```
-node docs/peek-a-boo-voice-build.js clips site/peek-a-boo/index.html
+node tools/voice-build.js recordings/clips index.html
 ```
 
    It converts each clip to a small mono file, trims the silence, and writes them into the game. It needs `ffmpeg` on the machine (`brew install ffmpeg`). It tells you which lines it found and which are still missing.
@@ -27,7 +27,7 @@ Run it again any time you add more clips. Lines without a clip keep using the ph
 
 ## Tier 1. The names
 
-Nine friends and six dress-up things. These play on every tap, so they matter most. Say each one like you just spotted it.
+Sixteen clips. These play on every tap, so they matter most.
 
 | File name | Line to read |
 |---|---|
@@ -39,6 +39,7 @@ Nine friends and six dress-up things. These play on every tap, so they matter mo
 | `tractor` | Tractor! |
 | `train` | Train! |
 | `firetruck` | Firetruck! |
+| `dino` | Dino! |
 | `baker` | Baker! |
 | `top_hat` | Top Hat! |
 | `crown` | Crown! |
@@ -49,7 +50,7 @@ Nine friends and six dress-up things. These play on every tap, so they matter mo
 
 ## Tier 2. Prompts that never change
 
-One recording each. The numbers are for Counting Garden and How many?, so count them out like you're pointing at butterflies.
+Thirty-three clips. The numbers are for counting, so say them like you're pointing.
 
 | File name | Line to read |
 |---|---|
@@ -89,7 +90,7 @@ One recording each. The numbers are for Counting Garden and How many?, so count 
 
 ## Tier 3. Prompts with a friend's name in them
 
-Longer list, same idea. Do these in a second sitting. Anything you skip is spoken by the phone until you get to it.
+Eighty-nine clips. A second sitting. Anything you skip stays in the phone's voice until you get to it.
 
 | File name | Line to read |
 |---|---|
@@ -101,6 +102,7 @@ Longer list, same idea. Do these in a second sitting. Anything you skip is spoke
 | `find_tractor` | Find Tractor! |
 | `find_train` | Find Train! |
 | `find_firetruck` | Find Firetruck! |
+| `find_dino` | Find Dino! |
 | `watch_duck_hide` | Watch Duck hide! |
 | `watch_piggy_hide` | Watch Piggy hide! |
 | `watch_owl_hide` | Watch Owl hide! |
@@ -109,6 +111,7 @@ Longer list, same idea. Do these in a second sitting. Anything you skip is spoke
 | `watch_tractor_hide` | Watch Tractor hide! |
 | `watch_train_hide` | Watch Train hide! |
 | `watch_firetruck_hide` | Watch Firetruck hide! |
+| `watch_dino_hide` | Watch Dino hide! |
 | `where_did_duck_go` | Where did Duck go? |
 | `where_did_piggy_go` | Where did Piggy go? |
 | `where_did_owl_go` | Where did Owl go? |
@@ -117,6 +120,7 @@ Longer list, same idea. Do these in a second sitting. Anything you skip is spoke
 | `where_did_tractor_go` | Where did Tractor go? |
 | `where_did_train_go` | Where did Train go? |
 | `where_did_firetruck_go` | Where did Firetruck go? |
+| `where_did_dino_go` | Where did Dino go? |
 | `tap_the_big_duck` | Tap the big Duck. |
 | `tap_the_big_piggy` | Tap the big Piggy. |
 | `tap_the_big_owl` | Tap the big Owl. |
@@ -125,6 +129,7 @@ Longer list, same idea. Do these in a second sitting. Anything you skip is spoke
 | `tap_the_big_tractor` | Tap the big Tractor. |
 | `tap_the_big_train` | Tap the big Train. |
 | `tap_the_big_firetruck` | Tap the big Firetruck. |
+| `tap_the_big_dino` | Tap the big Dino. |
 | `tap_the_little_duck` | Tap the little Duck. |
 | `tap_the_little_piggy` | Tap the little Piggy. |
 | `tap_the_little_owl` | Tap the little Owl. |
@@ -133,6 +138,7 @@ Longer list, same idea. Do these in a second sitting. Anything you skip is spoke
 | `tap_the_little_tractor` | Tap the little Tractor. |
 | `tap_the_little_train` | Tap the little Train. |
 | `tap_the_little_firetruck` | Tap the little Firetruck. |
+| `tap_the_little_dino` | Tap the little Dino. |
 | `two_ducks_a_pair` | Two Ducks! A pair! |
 | `two_piggys_a_pair` | Two Piggys! A pair! |
 | `two_owls_a_pair` | Two Owls! A pair! |
@@ -141,6 +147,7 @@ Longer list, same idea. Do these in a second sitting. Anything you skip is spoke
 | `two_tractors_a_pair` | Two Tractors! A pair! |
 | `two_trains_a_pair` | Two Trains! A pair! |
 | `two_firetrucks_a_pair` | Two Firetrucks! A pair! |
+| `two_dinos_a_pair` | Two Dinos! A pair! |
 | `duck_goes_in_the_barn` | Duck goes in the barn! |
 | `piggy_goes_in_the_barn` | Piggy goes in the barn! |
 | `owl_goes_in_the_barn` | Owl goes in the barn! |
@@ -149,6 +156,7 @@ Longer list, same idea. Do these in a second sitting. Anything you skip is spoke
 | `tractor_goes_in_the_garage` | Tractor goes in the garage! |
 | `train_goes_in_the_garage` | Train goes in the garage! |
 | `firetruck_goes_in_the_garage` | Firetruck goes in the garage! |
+| `dino_goes_in_the_barn` | Dino goes in the barn! |
 | `find_the_red_gift` | Find the red gift. |
 | `find_the_blue_gift` | Find the blue gift. |
 | `find_the_green_gift` | Find the green gift. |
@@ -171,6 +179,8 @@ Longer list, same idea. Do these in a second sitting. Anything you skip is spoke
 | `t_is_for_train` | T is for Train! |
 | `f_is_for_firetruck_find_firetruck` | F is for Firetruck. Find Firetruck! |
 | `f_is_for_firetruck` | F is for Firetruck! |
+| `d_is_for_dino_find_dino` | D is for Dino. Find Dino! |
+| `d_is_for_dino` | D is for Dino! |
 | `b_is_for_baker_find_baker` | B is for Baker. Find Baker! |
 | `b_is_for_baker` | B is for Baker! |
 
