@@ -143,6 +143,12 @@ the expected filenames:
 
 `python tools/make_placeholder_assets.py --force` regenerates the pack.
 
+## Music
+
+The underwater theme is a composed, synthesised chamber-orchestra piece; see
+`music/README.md`. The full opening theme, a narrated version and the voice stem
+live in `music/`, and `tools/compose_theme.py` regenerates all of it.
+
 ## Voice-over
 
 Every dialogue line can have a recorded clip. The game looks for

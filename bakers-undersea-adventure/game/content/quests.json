@@ -5,6 +5,7 @@
   "wrong_item_dialogue": "wrong_item",
   "generic_hint": "Try talking to everyone, and click on anything that looks interesting.",
   "ending_music": "festival",
+  "title_music": "underwater",
 
   "ui": {
     "new_game": "New Game", "continue": "Continue", "quit": "Quit",

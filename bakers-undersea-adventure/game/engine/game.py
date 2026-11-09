@@ -48,6 +48,7 @@ class Game:
         self.ending_index = 0
         self.frame = 0
         self._build_menus()
+        self.audio.music(self.content.quests.get("title_music", "underwater"))
 
     # Menus --------------------------------------------------------------------
     def _build_menus(self):
@@ -116,7 +117,7 @@ class Game:
 
     def to_title(self):
         self.save_game(autosave=True)
-        self.audio.music(None)
+        self.audio.music(self.content.quests.get("title_music", "underwater"))
         self.mode = "title"
 
     def quit(self):

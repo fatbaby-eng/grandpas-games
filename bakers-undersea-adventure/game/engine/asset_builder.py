@@ -126,6 +126,9 @@ def build_audio(force=False):
     written = []
     for name, fn in AUDIO.items():
         path = AUDIO_DIR / f"{name}.wav"
+        real = AUDIO_DIR / f"{name}.ogg"          # a real recording takes precedence
+        if real.is_file():
+            continue
         if force or not path.is_file():
             _write_wav(path, fn())
             written.append(path.name)
