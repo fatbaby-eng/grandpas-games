@@ -1,7 +1,7 @@
 // Baker: walks in straight lines to click targets, faces the way he's going.
 (function (B) {
   class Player {
-    constructor() { this.x = 640; this.y = 520; this.target = null; this.onArrive = null; this.facing = "right"; this.W = 120; this.H = 78; this.t = 0; }
+    constructor() { this.x = 640; this.y = 520; this.target = null; this.onArrive = null; this.facing = "right"; this.W = 150; this.H = 108; this.t = 0; }
     get moving() { return !!this.target; }
     rect() { return [this.x - this.W / 2, this.y - this.H, this.W, this.H]; }
     teleport(p) { this.x = p[0]; this.y = p[1]; this.target = null; this.onArrive = null; }

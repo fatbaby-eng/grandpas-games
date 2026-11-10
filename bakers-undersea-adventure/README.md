@@ -12,7 +12,9 @@ no timer, and no way to get stuck.
 ## Two ways to play
 
 - **In the browser**: open `web/index.html`. No install. This is the version
-  that will get the painted Freddi-Fish-style art; see `web/README.md`.
+  getting the painted storybook art: the title screen, Kelp Forest background
+  and six characters are painted already; the rest is on the generation sheet
+  in `art/ART_PROMPTS.md`. See `web/README.md`.
 - **Python / pygame**: the original build, below. Both share the same JSON content.
 
 ## Running the Python version

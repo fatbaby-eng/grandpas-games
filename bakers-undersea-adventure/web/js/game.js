@@ -148,6 +148,22 @@
       if (this.input.hover) B.Art.drawCursor(ctx, this.cursor, this.input.x, this.input.y, this.cursor === "item" ? this.state.inventory.selected : null);
     }
     drawTitle(ctx) {
+      const painted = B.Art.Images.find("title.jpg", "title.png", "title.webp");
+      const im = painted && B.Art.Images.get(painted);
+      if (im) {
+        const s = Math.max(B.W / im.naturalWidth, B.H / im.naturalHeight), dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+        ctx.drawImage(im, (B.W - dw) / 2, (B.H - dh) / 2, dw, dh);
+        // title in the open water top-left, buttons bottom-left, Baker stays visible on the right
+        B.text(ctx, "Baker's", 70, 48, { size: 50, weight: 700, color: "#fff6dc", stroke: B.Art.OUT, strokeWidth: 9 });
+        B.text(ctx, "Undersea", 70, 100, { size: 82, weight: 700, color: "#ffd84d", stroke: B.Art.OUT, strokeWidth: 11 });
+        B.text(ctx, "Adventure", 70, 186, { size: 82, weight: 700, color: "#ffd84d", stroke: B.Art.OUT, strokeWidth: 11 });
+        this.titleButtons[0].rect = [90, 560, 300, 58]; this.titleButtons[1].rect = [90, 630, 300, 58];
+        this.titleButtons[1].enabled = B.Save.exists();
+        for (const b of this.titleButtons) b.draw(ctx, this.input.x, this.input.y, 30);
+        B.text(ctx, this.content.quests.tagline || "", 420, 580, { size: 24, color: "#fff6dc", stroke: B.Art.OUT, strokeWidth: 6, maxWidth: 560 });
+        B.text(ctx, "Click anywhere to turn the sound on. Press M to mute.", 420, 650, { size: 18, color: "#e6f4ff", stroke: B.Art.OUT, strokeWidth: 4 });
+        return;
+      }
       const start = this.content.quests.start_scene || "coral_reef";
       const sc = this.getScene(start); if (!sc.bg) sc.bg = B.Art.paintBackground({ ...sc.data, id: start });
       ctx.drawImage(sc.bg, 0, 0); ctx.fillStyle = "#8b5a2b"; ctx.fillRect(0, B.PLAY_H, B.W, B.BAR_H);
@@ -156,6 +172,7 @@
       B.text(ctx, "Baker's", B.W / 2, 36, { size: 54, weight: 700, align: "center", color: "#fff1c4", stroke: B.Art.OUT, strokeWidth: 9 });
       B.text(ctx, "Undersea Adventure", B.W / 2, 92, { size: 72, weight: 700, align: "center", color: "#ffd84d", stroke: B.Art.OUT, strokeWidth: 10 });
       B.text(ctx, this.content.quests.tagline || "", B.W / 2, 560, { size: 26, align: "center", color: "#e6f4ff", stroke: B.Art.OUT, strokeWidth: 5 });
+      this.titleButtons[0].rect = [B.W / 2 - 150, 410, 300, 58]; this.titleButtons[1].rect = [B.W / 2 - 150, 480, 300, 58];
       this.titleButtons[1].enabled = B.Save.exists();
       for (const b of this.titleButtons) b.draw(ctx, this.input.x, this.input.y, 30);
       B.text(ctx, "Click anywhere to turn the sound on. Press M to mute.", B.W / 2, 672, { size: 20, align: "center", color: "#fff5d6" });

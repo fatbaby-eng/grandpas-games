@@ -7,10 +7,12 @@ a handful of scripts.
 - Same content as the Python version. `js/content.js` is generated from
   `../game/content/*.json` by `python ../tools/build_web.py`; edit the JSON,
   re-run the script, reload.
-- Art is drawn with canvas paths in `js/art.js` (characters, props, item icons,
-  backgrounds, cursors), in the thick-outline cartoon style of the old
-  Humongous games. Each piece is a small function, so real painted art can
-  replace any of them one at a time.
+- Art comes in two layers. Painted assets in `assets/images/` win whenever they
+  exist: `title.jpg`, `backgrounds/<scene>.jpg`, `characters/<id>.png` plus an
+  optional `characters/<id>_talk.png` for the mouth-open frame. Anything not
+  painted yet falls back to the vector drawings in `js/art.js`. `build_web.py`
+  writes `js/image_index.js` listing what is present, so assets can arrive one
+  at a time. `../art/ART_PROMPTS.md` is the generation sheet for the rest.
 - Saves go to the browser's localStorage. "Continue" on the title screen picks up
   the last autosave (every scene change).
 - Audio: music and effects in `assets/audio`; voice clips in `assets/audio/voice`

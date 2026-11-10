@@ -204,9 +204,43 @@
     blob(ctx, col, o) { circle(ctx, 50, 50, 36, rgb(col)); eye(ctx, 62, 44, 6, o.blink, 0.3, 0); mouth(ctx, 64, 60, 10, o.talking, o.t); },
   };
 
+  // ---- painted bitmap assets (optional). Anything listed in image_index.js wins over the vector art.
+  const Images = {
+    cache: {},
+    has(name) { return !!(window.BUA_IMAGES && window.BUA_IMAGES.includes(name)); },
+    get(name) {
+      if (!this.has(name)) return null;
+      if (!this.cache[name]) { const im = new Image(); im.src = "assets/images/" + name; this.cache[name] = im; }
+      const im = this.cache[name]; return im.complete && im.naturalWidth ? im : null;
+    },
+    find(...names) { for (const n of names) if (this.has(n)) return n; return null; },
+  };
+
+  // Draw an image to fit inside (x,y,w,h), bottom-aligned, keeping its aspect ratio.
+  function fitImage(ctx, im, x, y, w, h, facing) {
+    const s = Math.min(w / im.naturalWidth, h / im.naturalHeight), dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+    ctx.save(); ctx.translate(x + w / 2, y + h);
+    if (facing === "left") ctx.scale(-1, 1);
+    ctx.drawImage(im, -dw / 2, -dh, dw, dh); ctx.restore();
+  }
+
   function drawCharacter(ctx, charId, x, y, w, h, o) {
     const ch = C.characters[charId] || { color: [200, 200, 200], shape: "blob" };
     o = o || {}; const t = o.t || 0;
+    const base = Images.find(`characters/${charId}.png`, `characters/${charId}.webp`);
+    if (base) {
+      const talkName = Images.find(`characters/${charId}_talk.png`, `characters/${charId}_talk.webp`);
+      const useTalk = o.talking && talkName && Math.floor(t * 7) % 2 === 0;
+      const im = Images.get(useTalk ? talkName : base) || Images.get(base);
+      if (im) {
+        const bob = Math.sin(t * (o.moving ? 10 : 1.6) + B.hash(charId) % 10) * (o.moving ? 4 : 2.5);
+        const sway = o.moving ? Math.sin(t * 10) * 0.04 : Math.sin(t * 1.2) * 0.015;
+        ctx.save(); ctx.translate(x + w / 2, y + h / 2 + bob); ctx.rotate(sway); ctx.translate(-(x + w / 2), -(y + h / 2 + bob));
+        // painted sprites face RIGHT in their files, like the vector ones
+        fitImage(ctx, im, x, y, w, h, o.facing);
+        ctx.restore(); return;
+      }
+    }
     const blink = ((Math.floor(t * 2 + B.hash(charId) % 7) % 11) === 0) && (t * 2 % 1) < 0.25;
     const bob = Math.sin(t * (o.moving ? 10 : 1.6) + B.hash(charId) % 10) * (o.moving ? 4 : 2.5);
     ctx.save();
@@ -224,7 +258,10 @@
     ctx.save();
     circle(ctx, x + size / 2, y + size / 2, size / 2, rgb(tint(ch.color, 0.65)), 4);
     ctx.beginPath(); ctx.arc(x + size / 2, y + size / 2, size / 2 - 3, 0, 7); ctx.clip();
-    drawCharacter(ctx, charId, x + size * 0.05, y + size * 0.15, size * 0.9, size * 0.75, { t: 1.3 });
+    const name = Images.find(`characters/${charId}.png`, `characters/${charId}.webp`);
+    const im = name && Images.get(name);
+    if (im) { const s = Math.max((size * 0.92) / im.naturalWidth, (size * 0.92) / im.naturalHeight); const dw = im.naturalWidth * s, dh = im.naturalHeight * s; ctx.drawImage(im, x + size / 2 - dw / 2, y + size * 0.54 - dh / 2, dw, dh); }
+    else drawCharacter(ctx, charId, x + size * 0.05, y + size * 0.15, size * 0.9, size * 0.75, { t: 1.3 });
     ctx.restore();
   }
 
@@ -345,6 +382,12 @@
   function paintBackground(scene) {
     const cv = document.createElement("canvas"); cv.width = B.W; cv.height = B.PLAY_H;
     const ctx = cv.getContext("2d"); const R = B.seeded(scene.id);
+    const painted = Images.find(`backgrounds/${scene.id}.jpg`, `backgrounds/${scene.id}.png`, `backgrounds/${scene.id}.webp`);
+    if (painted) {
+      // draw once the image is ready; until then the procedural background shows
+      const im = new Image(); im.onload = () => { const s = Math.max(B.W / im.naturalWidth, B.PLAY_H / im.naturalHeight); const dw = im.naturalWidth * s, dh = im.naturalHeight * s; ctx.clearRect(0, 0, B.W, B.PLAY_H); ctx.drawImage(im, (B.W - dw) / 2, (B.PLAY_H - dh) / 2, dw, dh); };
+      im.src = "assets/images/" + painted;
+    }
     const pal = scene.palette || {}; const top = pal.top || [40, 150, 210], bottom = pal.bottom || [10, 70, 130], floor = pal.floor || [230, 200, 150];
     const floorY = scene.floor_y || 400, style = scene.style || "reef";
     ctx.fillStyle = grad(ctx, 0, 0, 0, B.PLAY_H, [[0, rgb(top)], [1, rgb(bottom)]]); ctx.fillRect(0, 0, B.W, B.PLAY_H);
@@ -388,5 +431,5 @@
     ctx.restore();
   }
 
-  B.Art = { OUT, drawCharacter, drawPortrait, drawIcon, drawProp, paintBackground, drawCursor, ellipse, circle, fillStroke, path, eye };
+  B.Art = { OUT, Images, fitImage, drawCharacter, drawPortrait, drawIcon, drawProp, paintBackground, drawCursor, ellipse, circle, fillStroke, path, eye };
 })(window.BUA);
