@@ -14,7 +14,7 @@ no timer, and no way to get stuck.
 - **In the browser**: open `web/index.html`. No install. This is the version
   getting the painted storybook art: the title screen, Kelp Forest background
   and six characters are painted already; the rest is on the generation sheet
-  in `art/ART_PROMPTS.md`. See `web/README.md`.
+  in `art/GEMINI_PROMPTS.md`. See `web/README.md`.
 - **Python / pygame**: the original build, below. Both share the same JSON content.
 
 ## Running the Python version

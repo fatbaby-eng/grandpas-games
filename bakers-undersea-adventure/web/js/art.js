@@ -230,8 +230,10 @@
     const base = Images.find(`characters/${charId}.png`, `characters/${charId}.webp`);
     if (base) {
       const talkName = Images.find(`characters/${charId}_talk.png`, `characters/${charId}_talk.webp`);
+      const swimName = Images.find(`characters/${charId}_swim.png`, `characters/${charId}_swim.webp`);
       const useTalk = o.talking && talkName && Math.floor(t * 7) % 2 === 0;
-      const im = Images.get(useTalk ? talkName : base) || Images.get(base);
+      const pick = useTalk ? talkName : (o.moving && swimName ? swimName : base);
+      const im = Images.get(pick) || Images.get(base);
       if (im) {
         const bob = Math.sin(t * (o.moving ? 10 : 1.6) + B.hash(charId) % 10) * (o.moving ? 4 : 2.5);
         const sway = o.moving ? Math.sin(t * 10) * 0.04 : Math.sin(t * 1.2) * 0.015;

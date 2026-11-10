@@ -9,11 +9,11 @@ a handful of scripts.
   re-run the script, reload.
 - Art comes in two layers. Painted assets in `assets/images/` win whenever they
   exist: `title.jpg`, `backgrounds/<scene>.jpg`, `characters/<id>.png` plus an
-  optional `characters/<id>_talk.png` for the mouth-open frame, `items/<item id>.png`
+  optional `characters/<id>_talk.png` for the mouth-open frame and `characters/<id>_swim.png` shown while moving, `items/<item id>.png`
   for inventory icons and `props/<hotspot id>.png` for things in the scenes. Anything not
   painted yet falls back to the vector drawings in `js/art.js`. `build_web.py`
   writes `js/image_index.js` listing what is present, so assets can arrive one
-  at a time. `../art/ART_PROMPTS.md` is the generation sheet for the rest.
+  at a time. `../art/GEMINI_PROMPTS.md` is the generation sheet for the rest.
 - Saves go to the browser's localStorage. "Continue" on the title screen picks up
   the last autosave (every scene change).
 - Audio: music and effects in `assets/audio`; voice clips in `assets/audio/voice`
