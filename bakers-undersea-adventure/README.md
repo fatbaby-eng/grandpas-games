@@ -9,7 +9,13 @@ shell home.
 Made for a 5 to 8 year old playing with a grown-up. There is nothing to lose,
 no timer, and no way to get stuck.
 
-## Running the game
+## Two ways to play
+
+- **In the browser**: open `web/index.html`. No install. This is the version
+  that will get the painted Freddi-Fish-style art; see `web/README.md`.
+- **Python / pygame**: the original build, below. Both share the same JSON content.
+
+## Running the Python version
 
 Requires Python 3.11 or newer.
 

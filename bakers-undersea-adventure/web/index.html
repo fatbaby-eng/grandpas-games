@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Baker's Undersea Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; height: 100%; background: #06203a; overflow: hidden; touch-action: none;
+               font-family: 'Fredoka', 'Trebuchet MS', 'Segoe UI', sans-serif; }
+  #stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  canvas { display: block; cursor: none; image-rendering: auto; }
+  #loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+             color: #ffe9b8; font-size: 28px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="game" width="1280" height="720"></canvas></div>
+<div id="loading">loading the reef…</div>
+<script src="js/content.js"></script>
+<script src="js/voice_index.js"></script>
+<script src="js/util.js"></script>
+<script src="js/state.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/art.js"></script>
+<script src="js/dialogue.js"></script>
+<script src="js/actions.js"></script>
+<script src="js/player.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/minigames.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
