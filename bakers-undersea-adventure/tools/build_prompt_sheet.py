@@ -34,6 +34,8 @@ sec("Characters", "Two images each: idle (mouth closed) and talk (mouth open). G
     {"name": "DJ Dolphin", "file": "dj.png", "ref": "art/reference/cast_group.jpg", "status": "needed",
      "subject": "DJ Dolphin: a sleek blue bottlenose dolphin wearing pink headphones around his head and sunglasses pushed up on his forehead, big toothy grin, one flipper raised like he is waving to a crowd."},
     {"name": "DJ Dolphin, talking", "file": "dj_talk.png", "ref": "your dj.png result", "status": "needed", "talk": True},
+    {"name": "Coral (redo)", "file": "coral.png", "ref": "art/reference/coral_kelp.jpg", "status": "needed",
+     "subject": "Coral: a slender, elegant pink seahorse with a lavender-to-peach gradient down her body, small white freckle spots along her back, soft ridged belly, a delicate translucent dorsal fin, a tiny crown-like fin on her head, big dark glossy eyes with long lashes and a gentle worried-but-kind expression, a small smile, and a thin kelp bracelet tied around her curled tail. Her tail curls under her in a neat spiral. She is the same character as the attached reference, painted in the same way."},
     {"name": "Pip", "file": "pip.png", "ref": "art/reference/cast_group.jpg", "status": "needed",
      "subject": "Pip: a tiny tan sand crab with eyes on stalks and a flat, unimpressed, deadpan expression, claws folded."},
     {"name": "Coral, talking", "file": "coral_talk.png", "ref": "web/assets/images/characters/coral.png", "status": "needed", "talk": True},
@@ -42,7 +44,7 @@ sec("Characters", "Two images each: idle (mouth closed) and talk (mouth open). G
     {"name": "Shelly, talking", "file": "shelly_talk.png", "ref": "web/assets/images/characters/shelly.png", "status": "needed", "talk": True},
     {"name": "Sidney, talking", "file": "sidney_talk.png", "ref": "web/assets/images/characters/sidney.png", "status": "needed", "talk": True},
     {"name": "Baker idle / talk / swim", "file": "baker.png, baker_talk.png, baker_swim.png", "ref": "", "status": "done", "subject": ""},
-    {"name": "Coral, Grandma, Puffer, Shelly, Sidney idle", "file": "coral.png, grandma.png, puffer.png, shelly.png, sidney.png", "ref": "", "status": "done", "subject": ""},
+    {"name": "Grandma, Puffer, Shelly, Sidney idle", "file": "grandma.png, puffer.png, shelly.png, sidney.png", "ref": "", "status": "done", "subject": ""},
 ])
 
 sec("Backgrounds", "One per scene. No characters at all; the game draws them on top. Attach the finished reef painting so every scene matches it.",
