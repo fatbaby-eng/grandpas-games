@@ -1,4 +1,9 @@
-# Gemini prompt sheet for Baker's Undersea Adventure
+# Gemini prompt sheet
+
+Open **`gemini-prompts.html`** in this folder: every prompt with a Copy button, the reference image to attach, the file name to save as, and a checklist that remembers progress. Regenerate it with `python tools/build_prompt_sheet.py` after editing that script.
+
+The plain-text version follows.
+
 
 Every graphic the game still needs, as copy-and-paste prompts. Each prompt is
 self-contained (Gemini does not remember style between prompts), so the style
