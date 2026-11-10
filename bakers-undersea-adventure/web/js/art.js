@@ -282,6 +282,9 @@
     conch_shell(ctx) { ctx.beginPath(); ctx.moveTo(-40, 10); ctx.bezierCurveTo(-30, -40, 40, -40, 40, 0); ctx.bezierCurveTo(40, 30, 0, 40, -40, 10); ctx.closePath(); fillStroke(ctx, "#ffc7b0"); ctx.beginPath(); ctx.moveTo(-30, 10); ctx.quadraticCurveTo(0, 0, 28, 6); fillStroke(ctx, null, 2.5); ctx.beginPath(); ctx.moveTo(-10, -26); ctx.quadraticCurveTo(10, -10, 4, 18); fillStroke(ctx, null, 2.5); ctx.fillStyle = "#ff8fa8"; ctx.beginPath(); ctx.ellipse(-10, 16, 18, 7, 0.3, 0, 7); ctx.fill(); },
   };
   function drawIcon(ctx, itemId, x, y, size) {
+    const name = Images.find(`items/${itemId}.png`, `items/${itemId}.webp`);
+    const im = name && Images.get(name);
+    if (im) { const s = Math.min((size * 0.92) / im.naturalWidth, (size * 0.92) / im.naturalHeight), dw = im.naturalWidth * s, dh = im.naturalHeight * s; ctx.drawImage(im, x + (size - dw) / 2, y + (size - dh) / 2, dw, dh); return; }
     ctx.save(); ctx.translate(x + size / 2, y + size / 2); ctx.scale(size / 100, size / 100); ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.lineJoin = "round";
     (ICONS[itemId] || (c => circle(c, 0, 0, 36, "#ddd")))(ctx); ctx.restore();
   }
@@ -370,6 +373,9 @@
   };
   function drawProp(ctx, scene, hs, t) {
     const [x, y, w, h] = hs.rect;
+    const name = Images.find(`props/${hs.id}.png`, `props/${hs.id}.webp`);
+    const im = name && Images.get(name);
+    if (im) { fitImage(ctx, im, x, y, w, h); return; }
     ctx.save(); ctx.translate(x, y); ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.lineJoin = "round";
     const fn = PROPS[hs.id];
     if (fn) fn(ctx, w, h, t, hs);

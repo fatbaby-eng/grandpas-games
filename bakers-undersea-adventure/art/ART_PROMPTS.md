@@ -47,11 +47,34 @@ floor so Baker can walk there. Save to `web/assets/images/backgrounds/`.
 | `dark_cave.jpg` | Dark Cave | Deep blue cave, glowing teal mushrooms and tiny lights, a wide open space in the middle-right for a whale, soft rock floor. |
 | `festival_grounds.jpg` | Festival Grounds | Dusk-purple water, strings of lanterns and bunting, an empty wooden stage in the centre, a snack stall on the left, a sparkly dance floor on the right. |
 
-## Props (optional, later)
+## Items (inventory icons)
 
-Same style, each on white: treasure chest (closed / open), bubble machine,
-captain's chest with three coloured shells, lantern, sandcastle, snack stall,
-speakers, balloon, glowing mushrooms, old boot, snail, ship's wheel.
+Same style, each on white, roughly square. Save to `web/assets/images/items/`:
+`gear.png`, `bubble_helmet.png` (done), `glasses.png`, `shell_polish.png`,
+`ship_key.png`, `lantern.png`, `crowbar.png`, `pearl.png`, `recipe_page.png`,
+`cookie.png`, `dance_shoes.png`, `conch_shell.png` (done).
+
+## Props (things in the scenes)
+
+Same style, each on white. Save to `web/assets/images/props/<hotspot id>.png`:
+
+| File | What |
+|---|---|
+| `bubble_machine.png` | Brass and copper bubble machine with a round window, dials, a funnel on top |
+| `chest.png`, `chest_open.png` | Wooden treasure chest with three coloured shells on the lid, closed and open |
+| `treasure_door.png`, `treasure_room.png` | Heavy wooden ship door with iron bands, closed; and the same doorway open with golden light |
+| `wheel.png` | Ship's wheel |
+| `porthole.png` | Round brass porthole |
+| `barrel.png` | Wooden barrel with a PICKLES label |
+| `sandcastle.png` | Small sandcastle with a flag |
+| `anemone.png`, `starfish.png`, `chatty_clam.png`, `snail.png`, `sleepy_fish.png` | Reef and kelp critters |
+| `old_boot.png` (done), `tickly_kelp.png` | Kelp Forest clickables |
+| `stuck_shell.png` (done), `glow_mushrooms.png`, `echo_spot.png`, `suspicious_rock.png`, `krill.png` | Dark Cave clickables |
+| `stage.png`, `dance_floor.png`, `cookie_table.png`, `balloon.png`, `snack_stall.png`, `speakers.png`, `confetti_cannon.png` | Festival Grounds |
+| `to_festival.png` | The pink coral festival arch with bunting |
+
+Exit signposts (`to_reef`, `to_kelp`, `to_ship`, `to_cave`) can stay as drawn
+signs, or be painted as one `signpost.png` later.
 
 ## Notes
 
