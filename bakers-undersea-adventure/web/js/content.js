@@ -270,14 +270,14 @@ window.BUA_CONTENT = {
      "type": "npc",
      "character": "sidney",
      "rect": [
-      950,
-      470,
-      100,
-      70
+      860,
+      480,
+      110,
+      80
      ],
      "walk_to": [
-      880,
-      570
+      790,
+      575
      ],
      "dialogue": [
       {
@@ -398,8 +398,8 @@ window.BUA_CONTENT = {
      "id": "sandcastle",
      "type": "humor",
      "rect": [
-      820,
-      560,
+      640,
+      565,
       110,
       60
      ],
@@ -419,10 +419,10 @@ window.BUA_CONTENT = {
      "id": "anemone",
      "type": "humor",
      "rect": [
-      120,
+      400,
       540,
-      90,
-      80
+      130,
+      95
      ],
      "label": "anemone",
      "color": [
@@ -430,6 +430,7 @@ window.BUA_CONTENT = {
       140,
       180
      ],
+     "in_background": true,
      "text": [
       "Wiggly! The anemone tickles my fin.",
       "The anemone sneezes. Anemones can't sneeze. ...Can they?",

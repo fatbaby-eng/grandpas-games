@@ -38,7 +38,7 @@
          {"id": "coral_hint"}
        ],
        "use": {"cookie": {"actions": [{"dialogue": "coral_cookie"}]}, "conch_shell": {"actions": [{"dialogue": "coral_has_shell"}]}}},
-      {"id": "sidney", "type": "npc", "character": "sidney", "rect": [950, 470, 100, 70], "walk_to": [880, 570],
+      {"id": "sidney", "type": "npc", "character": "sidney", "rect": [860, 480, 110, 80], "walk_to": [790, 575],
        "dialogue": [
          {"if": {"flag": "crab_dance_done"}, "id": "sidney_after"},
          {"if": {"flag": "met_sidney"}, "id": "sidney_again"},
@@ -55,9 +55,9 @@
        "requires": {"any": [{"has": "conch_shell"}, {"flag": "shell_returned"}]},
        "blocked": [{"dialogue": "festival_locked"}]},
 
-      {"id": "sandcastle", "type": "humor", "rect": [820, 560, 110, 60], "label": "sandcastle", "color": [235, 215, 160],
+      {"id": "sandcastle", "type": "humor", "rect": [640, 565, 110, 60], "label": "sandcastle", "color": [235, 215, 160],
        "text": ["A sandcastle. The tide is not kind to architects.", "Somebody built a tiny sand garage for a tiny sand car.", "A sand crab pokes its head out of the sand tower. 'Rent's due!'"]},
-      {"id": "anemone", "type": "humor", "rect": [120, 540, 90, 80], "label": "anemone", "color": [255, 140, 180],
+      {"id": "anemone", "type": "humor", "rect": [400, 540, 130, 95], "label": "anemone", "color": [255, 140, 180], "in_background": true,
        "text": ["Wiggly! The anemone tickles my fin.", "The anemone sneezes. Anemones can't sneeze. ...Can they?", "It waves back. I think we're friends now."]},
       {"id": "starfish", "type": "humor", "rect": [470, 470, 60, 60], "label": "starfish", "color": [255, 170, 90],
        "text": ["A starfish. It's practicing its autograph.", "'I'm not a fish,' says the starfish. 'I'm a STAR.'", "It does a slow, slow cartwheel. Very slow. Still going."]},

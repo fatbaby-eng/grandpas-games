@@ -11,6 +11,7 @@ Hotspot schema (all optional keys marked with ?):
     item:   item (item id), pickup_flag? (defaults to picked_<id>)
     humor:  text: str | [str], speaker?, sound?, actions?
     exit:   to, spawn?, requires?: cond, blocked?: [actions]
+    in_background?: true   (web build: not drawn when the scene has a painted background)
     object: on_click?: [actions], dialogue?: id|[...], examine?: str
     any:    use?: {item_id | "*": [actions] | {"actions": [...], "consume": bool}}
 """

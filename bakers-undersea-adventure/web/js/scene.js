@@ -117,6 +117,7 @@
       const items = [];
       for (const hs of this.visible()) {
         if (hs.draw === false) continue;
+        if (hs.in_background && this.painted) continue;        // the painted background already shows it
         const r = hs.rect;
         if (hs.type === "npc" && hs.character) {
           const talking = this.talkingTo === hs.id && g.dialogue.speaker() === hs.character;
@@ -173,6 +174,7 @@
       const items = [];
       for (const hs of this.visible()) {
         if (hs.draw === false) continue;
+        if (hs.in_background && this.painted) continue;        // the painted background already shows it
         const r = hs.rect;
         if (hs.type === "npc" && hs.character) {
           const talking = this.talkingTo === hs.id && g.dialogue.speaker() === hs.character;
