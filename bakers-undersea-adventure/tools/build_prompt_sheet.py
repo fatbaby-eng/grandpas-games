@@ -81,7 +81,9 @@ sec("Inventory items", "Small square icons shown in the shelf at the bottom of t
     {"name": "Recipe Page", "file": "recipe_page.png", "ref": "art/reference/conch_shell.jpg", "status": "needed", "subject": "A soggy torn page of cream paper with a handwritten cookie recipe and a small cookie doodle in the corner; the writing is just scribbles, not real letters."},
     {"name": "Kelp Cookie", "file": "cookie.png", "ref": "art/reference/conch_shell.jpg", "status": "needed", "subject": "A round golden-brown cookie with little flecks of green kelp baked into it."},
     {"name": "Dance Shoes", "file": "dance_shoes.png", "ref": "art/reference/conch_shell.jpg", "status": "needed", "subject": "A pair of tiny sparkly pink dance shoes with little bows."},
-    {"name": "Bubble Helmet, Great Conch Shell", "file": "bubble_helmet.png, conch_shell.png", "ref": "", "status": "done", "subject": ""},
+    {"name": "Great Conch Shell (redo)", "file": "conch_shell.png", "ref": "art/reference/conch_shell.jpg", "status": "needed",
+     "subject": "The Great Conch Shell: a large classic queen conch shell with a wide flared lip that opens toward the viewer, glossy pink and coral inside the opening fading to cream, a pale sandy-peach outside with soft brown and orange stripes and a crown of short blunt knobs along the spiral top, a gentle magical glow and two or three tiny sparkles around it, as if it is humming. The spiral point is to the left, the opening to the right."},
+    {"name": "Bubble Helmet", "file": "bubble_helmet.png", "ref": "", "status": "done", "subject": ""},
 ])
 
 PROPS = [
